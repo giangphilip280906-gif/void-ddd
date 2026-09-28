@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>VOID WARRIOR — Game Design & Worldbuilding</title>
+<meta content="VOID WARRIOR — game overview, worldbuilding, Kai character file and storyboard." name="description"/>
+<style>
+  :root{
+    --bg:#07070b; --panel:#101018; --ink:#f3f1ed; --muted:#9b99a7;
+    --red:#e62b2b; --purple:#8e39ff; --line:rgba(255,255,255,.13);
+    --mx:50vw; --my:50vh; --ease:cubic-bezier(.2,.75,.25,1);
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;overflow-x:hidden;cursor:none}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(142,57,255,.08),transparent 65%);mix-blend-mode:screen}
+  ::selection{background:var(--purple);color:#fff}
+  a{color:inherit;text-decoration:none}.wrap{width:min(1460px,94vw);margin:auto}
+  .cursor{width:12px;height:12px;border:1px solid #fff;border-radius:50%;position:fixed;left:0;top:0;z-index:2000;pointer-events:none;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
+  .cursor.big{width:44px;height:44px;background:#fff}
+  .cursor-dot{width:4px;height:4px;background:#fff;border-radius:50%;position:fixed;z-index:2001;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:difference}
+  .noise{position:fixed;inset:0;pointer-events:none;opacity:.06;z-index:1200;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+  header{position:fixed;top:0;left:0;width:100%;z-index:1000;border-bottom:1px solid var(--line);backdrop-filter:blur(16px);background:rgba(7,7,11,.55)}
+  nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{font-weight:900;letter-spacing:.18em;font-size:14px}.brand b{color:var(--red)}
+  .navlinks{display:flex;gap:28px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}.navlinks a{opacity:.65;transition:.25s}.navlinks a:hover{opacity:1;color:#fff}
+  .edit-btn{border:1px solid var(--line);background:transparent;color:#fff;padding:10px 14px;font:inherit;font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:none}.edit-btn.active{background:var(--red);border-color:var(--red)}
+  .hero{height:100svh;min-height:700px;position:relative;display:grid;align-items:end;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(90deg,#050508 0%,rgba(5,5,8,.86) 28%,rgba(5,5,8,.24) 70%,#050508 100%),url('assets/map.png') center/cover no-repeat;filter:saturate(.65) brightness(.55);transform:scale(1.06)}
+  .hero-grid{position:relative;z-index:4;display:grid;grid-template-columns:1.2fr .8fr;align-items:end;min-height:calc(100svh - 72px);padding:120px 0 44px}
+  .eyebrow{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:#b6b1c4;margin-bottom:20px}.hero h1{font-size:clamp(72px,12vw,190px);line-height:.76;margin:0;letter-spacing:-.075em;font-weight:950}.hero h1 .void{color:transparent;-webkit-text-stroke:1px #fff}.hero h1 .warrior{display:block;color:var(--red)}
+  .hero-copy{max-width:620px;font-size:15px;line-height:1.75;color:#c4c0cb;margin-top:28px}.hero-copy strong{color:#fff}
+  .hero-char{height:min(78vh,900px);justify-self:end;align-self:end;position:relative;filter:drop-shadow(0 0 36px rgba(0,0,0,.75))}.hero-char img{height:100%;max-width:44vw;object-fit:contain;display:block;transform:translateY(3%)}
+  .hero-char::before{content:"KAI";position:absolute;right:96%;top:44%;font-size:clamp(48px,8vw,120px);font-weight:900;letter-spacing:.12em;color:rgba(255,255,255,.04);transform:rotate(-90deg);transform-origin:right center;white-space:nowrap}
+  .scroll-note{position:absolute;right:2vw;bottom:30px;z-index:10;writing-mode:vertical-rl;font-size:10px;letter-spacing:.25em;opacity:.55}
+  .section{padding:130px 0;border-bottom:1px solid var(--line);position:relative}.section-no{font-size:11px;letter-spacing:.24em;color:var(--red);margin-bottom:18px}.section-title{font-size:clamp(42px,7vw,102px);line-height:.9;letter-spacing:-.045em;margin:0 0 54px;font-weight:900;text-transform:uppercase}.section-title em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.5)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}.copy{font-size:18px;line-height:1.8;color:#c7c3ce}.copy p{margin:0 0 22px}.big-quote{font-size:clamp(28px,4vw,62px);line-height:1.12;letter-spacing:-.03em;font-weight:700;border-left:2px solid var(--red);padding-left:28px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:70px}.stat{background:var(--bg);padding:28px}.stat b{display:block;font-size:38px}.stat span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .element-track{display:flex;gap:14px;overflow:auto;padding:5px 0 30px;scrollbar-width:none}.element-track::-webkit-scrollbar{display:none}.element-card{flex:0 0 260px;height:360px;border:1px solid var(--line);position:relative;overflow:hidden;background:linear-gradient(145deg,#15151f,#0b0b11);padding:24px;transition:.35s var(--ease);transform-style:preserve-3d}.element-card:hover{border-color:rgba(255,255,255,.35);transform:translateY(-8px)}
+  .element-card::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-80px;bottom:-70px;background:radial-gradient(circle,var(--glow),transparent 68%);filter:blur(8px);opacity:.7}.glyph{font-size:64px;font-weight:900;color:var(--glow);line-height:1;margin-bottom:100px;text-shadow:0 0 22px color-mix(in srgb,var(--glow),transparent 55%)}.element-card h3{font-size:25px;margin:0 0 10px}.element-card p{font-size:12px;line-height:1.55;color:var(--muted)}
+  .rules{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.rule{border:1px solid var(--line);padding:30px;min-height:220px;background:#0b0b11;position:relative}.rule .num{font-size:11px;color:var(--red);letter-spacing:.2em}.rule h3{font-size:24px;margin:32px 0 10px}.rule p{color:var(--muted);line-height:1.65;font-size:14px}
+  .kai-sec{overflow:hidden}.kai-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:6vw;align-items:center}.kai-art{position:relative;min-height:720px}.kai-art img{position:absolute;height:100%;left:0;bottom:-10%;object-fit:contain;filter:drop-shadow(0 30px 35px #000)}.kai-art .ring{position:absolute;width:520px;height:520px;border:1px solid rgba(230,43,43,.35);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.kai-art .ring::before,.kai-art .ring::after{content:"";position:absolute;inset:45px;border:1px solid rgba(142,57,255,.28);border-radius:50%}.kai-art .ring::after{inset:110px}
+  .timeline{border-top:1px solid var(--line);margin-top:38px}.timeline-item{display:grid;grid-template-columns:110px 1fr;gap:22px;border-bottom:1px solid var(--line);padding:22px 0}.timeline-item b{font-size:11px;color:var(--red);letter-spacing:.14em}.timeline-item span{color:#c7c3ce;line-height:1.65}
+  .map-block{position:relative;height:min(82vw,860px);border:1px solid var(--line);overflow:hidden;background:#0a0a10}.map-block img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);filter:saturate(.82) contrast(1.06)}.map-block:hover img{transform:scale(1.035)}.map-label{position:absolute;left:24px;bottom:20px;background:rgba(7,7,11,.72);backdrop-filter:blur(10px);border:1px solid var(--line);padding:14px 16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+  .monster-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.monster{min-height:520px;border:1px solid var(--line);position:relative;overflow:hidden;background:linear-gradient(#13131c,#07070b)}.monster img{position:absolute;width:100%;height:82%;object-fit:contain;bottom:0;filter:drop-shadow(0 20px 25px #000);transition:.45s var(--ease)}.monster:hover img{transform:scale(1.06) translateY(-8px)}.monster h3{position:absolute;top:20px;left:20px;z-index:2;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0}.monster span{position:absolute;top:46px;left:20px;z-index:2;color:var(--purple);font-size:10px;letter-spacing:.16em}
+  .story-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.story{border:1px solid var(--line);overflow:hidden;background:#fff;position:relative}.story img{width:100%;height:auto;display:block;filter:grayscale(1);transition:.4s}.story:hover img{filter:grayscale(0);transform:scale(1.015)}.story .tag{position:absolute;top:12px;left:12px;background:#0a0a0d;color:#fff;padding:8px 10px;font-size:9px;letter-spacing:.14em}
+  .editable-hint{display:none;position:fixed;right:18px;bottom:18px;z-index:1500;background:#e62b2b;color:#fff;padding:12px 16px;font-size:11px;letter-spacing:.08em;box-shadow:0 10px 30px #000}.editing .editable-hint{display:block}.editing [contenteditable="true"]{outline:1px dashed rgba(230,43,43,.55);outline-offset:4px}.editing .editable-img{outline:1px dashed rgba(142,57,255,.7);cursor:pointer}
+  .footer{padding:70px 0 30px}.footer-logo{width:min(520px,80vw);filter:drop-shadow(0 0 25px rgba(230,43,43,.14))}.footer-grid{display:flex;justify-content:space-between;align-items:end;gap:30px;border-top:1px solid var(--line);padding-top:28px;margin-top:50px;color:var(--muted);font-size:11px;letter-spacing:.09em}
+  .burst{position:fixed;pointer-events:none;z-index:1900;border:1px solid var(--purple);border-radius:50%;width:14px;height:14px;transform:translate(-50%,-50%);animation:burst .7s ease-out forwards}.spark{position:fixed;pointer-events:none;z-index:1900;width:3px;height:26px;background:linear-gradient(var(--purple),transparent);transform-origin:50% 100%;animation:spark .6s ease-out forwards}@keyframes burst{to{width:120px;height:120px;opacity:0}}@keyframes spark{to{transform:translate(var(--tx),var(--ty)) rotate(var(--r)) scaleY(.1);opacity:0}}
+  .reveal{opacity:0;transform:translateY(35px);transition:.9s var(--ease)}.reveal.in{opacity:1;transform:none}
+  @media(max-width:900px){body{cursor:auto}.cursor,.cursor-dot{display:none}.navlinks{display:none}.hero-grid{grid-template-columns:1fr}.hero-char{position:absolute;right:-12%;bottom:0;opacity:.58;height:65vh}.hero-char img{max-width:74vw}.hero h1{font-size:clamp(64px,20vw,120px)}.hero-copy{max-width:78%}.two-col,.kai-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.rules{grid-template-columns:1fr}.monster-grid{grid-template-columns:repeat(2,1fr)}.kai-art{min-height:560px}.story-grid{grid-template-columns:1fr}.section{padding:92px 0}}
+  @media(max-width:560px){.monster-grid{grid-template-columns:1fr}.monster{min-height:440px}.stats{grid-template-columns:1fr 1fr}.section-title{margin-bottom:34px}.world-title{letter-spacing:.01em!important;line-height:1.06!important}.world-title>em{font-size:.86em}.hero-copy{max-width:95%;font-size:13px}}
+
+/* WUKONG-inspired information hierarchy, retaining VOID WARRIOR's dark motion identity */
+.overview-sec{background:linear-gradient(180deg,#09090e 0%,#0b0712 55%,#07070b 100%)}
+.overview-lead{max-width:900px;color:#b9b5c4;font-size:18px;line-height:1.75;margin:-24px 0 60px}
+.flow-label{display:flex;justify-content:center;position:relative;margin:16px 0 58px}.flow-label:after{content:"";position:absolute;top:100%;height:42px;width:1px;background:linear-gradient(var(--purple),transparent)}
+.flow-label span,.overview-divider span,.hier-root{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.24);background:#f4f1ed;color:#111118;min-height:58px;padding:0 34px;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 14px 40px rgba(0,0,0,.2)}
+.overview-grid{display:grid;gap:22px;position:relative}.overview-grid-3{grid-template-columns:repeat(3,1fr)}.overview-grid-3:before{content:"";position:absolute;left:16.66%;right:16.66%;top:-36px;border-top:1px solid rgba(142,57,255,.55)}.overview-grid-3 .overview-card:before{content:"";position:absolute;left:50%;top:-36px;height:36px;border-left:1px solid rgba(142,57,255,.55)}
+.overview-grid-2{grid-template-columns:repeat(2,1fr)}
+.overview-card{position:relative;min-height:260px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(142,57,255,.035));padding:30px;overflow:hidden;transition:.35s var(--ease)}.overview-card:hover{border-color:rgba(142,57,255,.7);box-shadow:0 28px 80px rgba(75,24,130,.16)}
+.overview-card:after{content:"";position:absolute;inset:auto -30% -70% 30%;height:220px;background:radial-gradient(circle,rgba(142,57,255,.18),transparent 66%);pointer-events:none}
+.overview-index{font-size:11px;color:var(--red);letter-spacing:.18em;margin-bottom:48px}.overview-card h3{font-size:clamp(26px,3vw,46px);margin:0 0 18px;letter-spacing:-.03em}.overview-card p{color:#bbb7c5;line-height:1.75;margin:0}.overview-card p b{color:#fff}.overview-card.wide{min-height:300px}
+.micro-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:24px}.micro-grid b{font-size:11px;letter-spacing:.15em;color:#fff}.micro-grid p{margin-top:10px}
+.overview-divider{display:flex;align-items:center;gap:24px;margin:92px 0 38px}.overview-divider:before,.overview-divider:after{content:"";height:1px;background:var(--line);flex:1}.overview-divider span{background:#0d0d14;color:#fff;min-height:48px;padding:0 26px}
+.narrative-board{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:16px;align-items:center}.narrative-step{min-height:170px;border:1px solid var(--line);padding:24px;background:#0d0d14;display:flex;flex-direction:column;justify-content:space-between}.narrative-step b{font-size:12px;letter-spacing:.16em;color:var(--red)}.narrative-step span{font-size:17px;line-height:1.5}.narrative-arrow{font-size:28px;color:var(--purple)}
+.world-hierarchy{margin:90px 0 30px}.hier-root{display:flex;width:max-content;margin:0 auto 60px;position:relative}.hier-root:after{content:"";position:absolute;left:50%;top:100%;height:34px;border-left:1px solid rgba(142,57,255,.55)}.hier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}.hier-grid:before{content:"";position:absolute;left:16.66%;right:16.66%;top:-34px;border-top:1px solid rgba(142,57,255,.55)}.hier-card{position:relative;border:1px solid var(--line);background:#0c0c12;padding:28px;min-height:190px}.hier-card:before{content:"";position:absolute;top:-34px;left:50%;height:34px;border-left:1px solid rgba(142,57,255,.55)}.hier-card b{letter-spacing:.14em;font-size:12px}.hier-card p{color:#aaa6b2;line-height:1.7;margin:18px 0 0}
+.world-subsection{margin-top:120px;padding-top:60px;border-top:1px solid var(--line)}.sub-no{font-size:11px;letter-spacing:.22em;color:var(--red);text-transform:uppercase;margin-bottom:14px}.sub-title{font-size:clamp(30px,4vw,62px);line-height:1.05;letter-spacing:-.035em;margin:0 0 46px;max-width:1050px}
+.char-meta{display:flex;flex-wrap:wrap;gap:10px;margin:-28px 0 40px}.char-meta span{border:1px solid var(--line);padding:10px 14px;font-size:11px;letter-spacing:.08em;color:#a9a5b1}.char-meta b{color:#fff;margin-right:7px}
+#storyboard{background:linear-gradient(180deg,#07070b,#0b0712)}
+@media(max-width:900px){.overview-grid-3,.overview-grid-2,.hier-grid{grid-template-columns:1fr}.overview-grid-3:before,.overview-grid-3 .overview-card:before,.hier-grid:before,.hier-card:before,.flow-label:after,.hier-root:after{display:none}.micro-grid{grid-template-columns:1fr}.narrative-board{grid-template-columns:1fr}.narrative-arrow{transform:rotate(90deg);justify-self:center}.overview-lead{font-size:16px}.world-subsection{margin-top:80px}.char-meta{margin-top:-10px}}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<style id="vw-montserrat-redesign">
+/* VOID WARRIOR — NEW MONTSERRAT EDITION */
+:root{
+  --bg:#050507; --panel:#0d0d12; --panel2:#12121a; --ink:#f7f4ef;
+  --muted:#a6a2ad; --red:#ff3434; --purple:#8f45ff; --line:rgba(255,255,255,.14);
+  --ease:cubic-bezier(.2,.75,.25,1);
+}
+html{scroll-padding-top:72px}
+body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-serif!important}
+body{background:var(--bg);font-weight:400;letter-spacing:0}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 78%)}
+header{background:rgba(5,5,7,.66);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 10px 40px rgba(0,0,0,.18)}
+nav{height:76px}.brand{font-weight:900;letter-spacing:.22em}.navlinks{font-weight:700}.navlinks a{position:relative}.navlinks a:after{content:"";position:absolute;left:0;right:100%;bottom:-8px;height:2px;background:linear-gradient(90deg,var(--red),var(--purple));transition:.28s var(--ease)}.navlinks a:hover:after{right:0}
+.edit-btn{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:800;border-radius:999px;padding:11px 17px}
+
+.hero{min-height:760px;background:radial-gradient(circle at 78% 38%,rgba(143,69,255,.12),transparent 35%),radial-gradient(circle at 25% 70%,rgba(255,52,52,.09),transparent 32%),#050507}
+.hero:before{content:"VOID WARRIOR";position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);white-space:nowrap;font-size:clamp(96px,18vw,300px);font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.018);z-index:1;pointer-events:none}
+.hero-bg{opacity:.58;filter:saturate(.7) contrast(1.15)}
+.hero-grid{grid-template-columns:1.05fr .95fr;padding-top:140px;padding-bottom:44px}
+.eyebrow{font-weight:800;color:#d8d4dc;letter-spacing:.26em}.hero h1{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900;letter-spacing:-.075em;line-height:.76}.hero h1 .void{-webkit-text-stroke:1.4px #fff}.hero h1 .warrior{color:var(--red);text-shadow:0 0 42px rgba(255,52,52,.18)}
+.hero-copy{font-size:16px;line-height:1.85;color:#c9c5cf;font-weight:500}.hero-copy strong{font-weight:800}
+.hero-char{filter:drop-shadow(0 40px 50px rgba(0,0,0,.9))}.hero-char:after{content:"10 ELEMENT CORES / 01 VOID";position:absolute;right:0;bottom:6%;font-size:10px;letter-spacing:.2em;font-weight:800;color:#fff;border:1px solid rgba(255,255,255,.16);background:rgba(5,5,7,.6);backdrop-filter:blur(12px);padding:12px 14px}
+.scroll-note{font-weight:700}
+
+.section{padding:145px 0;overflow:hidden}
+.section:before{content:"";position:absolute;left:0;top:0;width:120px;height:1px;background:linear-gradient(90deg,var(--red),transparent)}
+#overview{background:linear-gradient(160deg,#07070a 0%,#0b090e 52%,#10070a 100%)}
+#world{background:radial-gradient(circle at 80% 20%,rgba(143,69,255,.08),transparent 28%),#07070b}
+#kai{background:radial-gradient(circle at 18% 50%,rgba(255,52,52,.075),transparent 30%),#060609}
+#storyboard{background:linear-gradient(180deg,#050507,#0c0710 62%,#050507)}
+.section-no,.sub-no{font-weight:800;color:var(--red);letter-spacing:.24em}.section-title{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900;letter-spacing:-.055em;line-height:.88}.section-title em{-webkit-text-stroke:1.2px rgba(255,255,255,.72)}
+.world-title{letter-spacing:.018em!important;line-height:1.02!important;max-width:100%;word-spacing:.04em}
+.world-title>span,.world-title>em{display:block}
+.world-title>span{margin-bottom:.12em}
+.world-title>em{letter-spacing:.012em;font-size:.92em}
+.overview-lead{font-weight:500;line-height:1.85;color:#c5c1ca}.flow-label span,.overview-divider span,.hier-root{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900;border:0;background:#f5f1eb;color:#111117;box-shadow:0 18px 60px rgba(0,0,0,.3);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.overview-grid{gap:18px}.overview-card{min-height:280px;background:linear-gradient(145deg,rgba(255,255,255,.052),rgba(255,255,255,.018));border-color:rgba(255,255,255,.12);border-radius:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.012)}.overview-card:hover{transform:translateY(-8px);border-color:rgba(255,52,52,.62);box-shadow:0 30px 90px rgba(0,0,0,.26)}
+.overview-index{font-weight:800;color:var(--red)}.overview-card h3,.sub-title,.big-quote{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900}.overview-card p,.copy,.hier-card p,.rule p,.timeline-item span{font-weight:500}
+.overview-divider{margin-top:105px}.narrative-step{background:linear-gradient(160deg,#101016,#0a0a0f);border-color:rgba(255,255,255,.12)}.narrative-step b{font-weight:900}.narrative-step span{font-weight:600}.narrative-arrow{color:var(--red)}
+
+.big-quote{border-left:5px solid var(--red);padding-left:30px}.stats{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.12)}.stat{background:#0b0b10}.stat b{font-weight:900}.stat span{font-weight:700}.hier-card{background:linear-gradient(145deg,#0f0f15,#09090d);border-color:rgba(255,255,255,.12)}.hier-card b{font-weight:900}.world-subsection{border-top-color:rgba(255,255,255,.12)}
+.element-track{gap:18px}.element-card{height:380px;background:linear-gradient(155deg,#14141b,#09090d 72%);border-color:rgba(255,255,255,.12)}.element-card:hover{transform:translateY(-12px) scale(1.012);box-shadow:0 34px 90px rgba(0,0,0,.3)}.glyph{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900}.element-card h3{font-weight:900}.element-card p{font-weight:500}.rule{background:linear-gradient(145deg,#0f0f14,#08080c);border-color:rgba(255,255,255,.12)}.rule .num{font-weight:900}.rule h3{font-weight:900}
+
+.char-meta span{font-weight:700;background:rgba(255,255,255,.025)}.char-meta b{font-weight:900}.kai-art .ring{border-color:rgba(255,52,52,.45);box-shadow:0 0 90px rgba(255,52,52,.06)}.kai-art .ring:before{border-color:rgba(143,69,255,.35)}.timeline-item b{font-weight:900}.monster{background:linear-gradient(180deg,#121219,#060608);border-color:rgba(255,255,255,.12)}.monster .monster-name{font-weight:900}
+.map-block{border-color:rgba(255,255,255,.12);box-shadow:0 34px 100px rgba(0,0,0,.28)}.map-label{font-weight:800}
+
+.story-grid{gap:22px}.story{border-color:rgba(255,255,255,.14);background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.2);transition:.4s var(--ease)}.story:hover{transform:translateY(-8px);box-shadow:0 40px 100px rgba(0,0,0,.34)}.story .tag{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:800;background:rgba(5,5,7,.88);backdrop-filter:blur(8px)}
+.footer-grid{font-weight:700}
+
+/* EDIT MODE remains functional; these make editable areas clearer */
+.editing [contenteditable="true"]{outline:1px dashed rgba(255,52,52,.7)!important;background:rgba(255,52,52,.025)}
+.editing .editable-img{outline:1px dashed rgba(143,69,255,.82)!important}
+
+@media(max-width:900px){
+  .hero-grid{padding-top:110px}.hero h1{font-size:clamp(64px,20vw,120px)}.hero-char{opacity:.48}.section{padding:105px 0}.section-title{font-size:clamp(42px,13vw,78px)}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.parallax{transform:none!important}}
+
+/* Vietnamese heading fix — local Windows-safe fonts, no webfont dependency */
+body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-serif!important}
+.world-title{
+  font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;
+  font-weight:900!important;
+  font-size:clamp(48px,7vw,118px)!important;
+  line-height:1.02!important;
+  letter-spacing:.015em!important;
+  word-spacing:.10em!important;
+  text-transform:uppercase;
+  overflow:visible!important;
+  padding-top:.16em;
+  padding-bottom:.08em;
+}
+.world-title>span,.world-title>em{
+  display:block;
+  overflow:visible!important;
+  padding-top:.09em;
+  padding-bottom:.08em;
+}
+.world-title>span{margin-bottom:.10em}
+.world-title>em{
+  font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;
+  font-style:normal!important;
+  font-size:.78em!important;
+  font-weight:900!important;
+  letter-spacing:.045em!important;
+  line-height:1.06!important;
+  color:transparent!important;
+  -webkit-text-stroke:1.25px rgba(255,255,255,.78)!important;
+  text-stroke:1.25px rgba(255,255,255,.78)!important;
+}
+@media(max-width:900px){
+  .world-title{font-size:clamp(42px,10vw,76px)!important;line-height:1.04!important;letter-spacing:.005em!important}
+  .world-title>em{font-size:.72em!important;letter-spacing:.025em!important}
+}
+@media(max-width:560px){
+  .world-title{font-size:clamp(38px,12vw,64px)!important;word-spacing:.04em!important}
+  .world-title>em{font-size:.68em!important}
+}
+</style>
+</head>
+<body>
+<div class="noise"></div><div class="cursor"></div><div class="cursor-dot"></div>
+<header><div class="wrap"><nav>
+<a class="brand magnetic" href="#top">VOID <b>WARRIOR</b></a>
+<div class="navlinks"><a href="#overview">Overview</a><a href="#world">Worldbuilding</a><a href="#kai">Kai</a><a href="#storyboard">Storyboard</a></div>
+<button class="edit-btn magnetic" id="editBtn">Edit mode</button>
+</nav></div></header>
+<main id="top">
+<section class="hero">
+<div class="hero-bg parallax" data-speed="0.08"></div>
+<div class="wrap hero-grid">
+<div class="reveal">
+<div class="eyebrow" data-edit="">Dark Fantasy / Action RPG / 2.5D Fighting</div>
+<h1><span class="void" data-edit="">VOID</span><span class="warrior" data-edit="">WARRIOR</span></h1>
+<p class="hero-copy" data-edit="">Một chiến binh sống sót sau thảm họa phải thu hồi <strong>10 Element Core</strong> bị Void chiếm giữ, làm chủ sức mạnh của từng hệ và tiến vào The Abyss để đối đầu nguồn gốc của sự tha hóa.</p>
+</div>
+<div class="hero-char parallax" data-speed="-0.06"><img alt="Kai" class="editable-img" src="assets/Kai.png"/></div>
+</div>
+<div class="scroll-note">SCROLL TO ENTER THE VOID ↓</div>
+</section><section class="section overview-sec" id="overview"><div class="wrap">
+<div class="section-no reveal">01 / GAME DESIGN OVERVIEW</div>
+<h2 class="section-title reveal" data-edit="">VOID WARRIOR <em>OVERVIEW</em></h2>
+<p class="overview-lead reveal" data-edit="">Mở đầu bằng cấu trúc tổng quan như một game design board: Game Idea → Game Concept → Player, sau đó là Game Design và Narrative. Toàn bộ hành trình đều dẫn về mục tiêu thu hồi các Element Core trước khi đối đầu Void.</p>
+<div class="flow-label reveal"><span>VOID WARRIOR</span></div>
+<div class="overview-grid overview-grid-3 reveal">
+<article class="overview-card tilt"><div class="overview-index">01</div><h3 data-edit="">GAME IDEA</h3><p data-edit="">Kai là chiến binh trẻ sống sót sau khi quê hương bị sinh vật Void tàn phá. Cậu lên đường thu hồi các Element Core đã bị chiếm giữ và tìm ra thế lực đứng sau thảm họa.</p></article>
+<article class="overview-card tilt"><div class="overview-index">02</div><h3 data-edit="">GAME CONCEPT</h3><p data-edit=""><b>2.5D Fighting / Action RPG / Dark Fantasy</b><br/>Combat · Combo · Exploration · Element Skills · Progression · Boss Battle.</p></article>
+<article class="overview-card tilt"><div class="overview-index">03</div><h3 data-edit="">PLAYER</h3><p data-edit="">Hướng tới người chơi 13–35 tuổi yêu thích game hành động, đối kháng, võ thuật, fantasy, nâng cấp nhân vật và khám phá cốt truyện qua chiến đấu.</p></article>
+</div>
+<div class="overview-divider reveal"><span>GAME DESIGN</span></div>
+<div class="overview-grid overview-grid-2 reveal">
+<article class="overview-card wide tilt">
+<div class="overview-index">04A</div><h3 data-edit="">GAMEPLAY</h3>
+<div class="micro-grid">
+<div><b>PLAYER ACTIONS</b><p data-edit="">Di chuyển · Đấm · Đá · Né · Đỡ · Counter · Combo · Vũ khí · Element Skill · Void Skill.</p></div>
+<div><b>GAME LOOP</b><p data-edit="">Explore → Combat → Defeat Boss → Element Core → Unlock Skill → Upgrade → Next Region.</p></div>
+</div>
+</article>
+<article class="overview-card wide tilt">
+<div class="overview-index">04B</div><h3 data-edit="">GAME SYSTEMS</h3>
+<div class="micro-grid">
+<div><b>COMBAT</b><p data-edit="">Combo nhanh, né/đỡ/phản công, đổi hệ theo kẻ địch và dùng Void Mode ở thời điểm quyết định.</p></div>
+<div><b>PROGRESSION</b><p data-edit="">EXP · Trang bị · Kỹ năng mới · Element Core · Khu vực mới · Boss mạnh hơn.</p></div>
+</div>
+</article>
+</div>
+<div class="overview-divider reveal"><span>NARRATIVE</span></div>
+<div class="narrative-board reveal">
+<div class="narrative-step"><b>01</b><span data-edit="">Ngôi làng bị Void tấn công</span></div>
+<div class="narrative-arrow">→</div>
+<div class="narrative-step"><b>02</b><span data-edit="">Kai sống sót và nhận thanh kiếm của người thầy</span></div>
+<div class="narrative-arrow">→</div>
+<div class="narrative-step"><b>03</b><span data-edit="">Đi qua các vùng nguyên tố, thu hồi Element Core</span></div>
+<div class="narrative-arrow">→</div>
+<div class="narrative-step"><b>04</b><span data-edit="">Khám phá nguồn gốc Void và tiến vào The Abyss</span></div>
+</div>
+</div></section><section class="section" id="world"><div class="wrap">
+<div class="section-no reveal">02 / WORLD BUILDING</div>
+<h2 class="section-title world-title reveal" data-edit=""><span>THẾ GIỚI NGUYÊN TỐ</span><em>BỊ VOID XÂM CHIẾM</em></h2>
+<div class="two-col">
+<div class="big-quote reveal" data-edit="">“Ngũ hệ là nền móng của sự sống. Void là sự tha hóa của mọi nền móng đó.”</div>
+<div class="copy reveal"><p data-edit="">Thế giới VOID WARRIOR mang cảm hứng Dark Fantasy và võ thuật Á Đông. Những vùng đất của con người, đền cổ, thành đá, rừng sâu và khu vực nguyên tố từng cùng tồn tại trong một trật tự ổn định.</p><p data-edit="">Void — nguồn năng lượng cổ đại từng bị phong ấn — đã thức tỉnh và xâm chiếm từng vùng, bẻ cong hệ sinh thái, sinh vật và chính sức mạnh nguyên tố.</p></div>
+</div>
+<div class="stats reveal"><div class="stat"><b data-edit="">10</b><span>Element Core</span></div><div class="stat"><b data-edit="">01</b><span>Void corruption</span></div><div class="stat"><b data-edit="">5+</b><span>Major regions</span></div><div class="stat"><b data-edit="">∞</b><span>Combat paths</span></div></div><div class="world-hierarchy reveal">
+<div class="hier-root">WORLD BUILDING</div>
+<div class="hier-grid">
+<div class="hier-card tilt"><b>HISTORY</b><p data-edit="">Void từng bị phong ấn từ thời cổ đại. Một nền văn minh cũ cố kiểm soát nguồn năng lượng này nhưng thất bại.</p></div>
+<div class="hier-card tilt"><b>CULTURE</b><p data-edit="">Con người sống trong làng, thành trì và các môn phái; võ thuật, kiếm thuật, bùa cổ và nghi lễ nguyên tố được truyền qua nhiều thế hệ.</p></div>
+<div class="hier-card tilt"><b>WORLD RULE</b><p data-edit="">Mỗi vùng gắn với một hệ nguyên tố. Void không phải hệ tự nhiên mà là năng lượng tha hóa có thể bẻ cong tất cả các hệ.</p></div>
+</div>
+</div>
+<div class="world-subsection"><div class="sub-no">02A / ELEMENTAL SYSTEM</div><h3 class="sub-title" data-edit="">10 Element Core + Void Corruption</h3><div class="element-track reveal" id="elementTrack">
+<article class="element-card tilt" style="--glow:#80d68a"><div class="glyph">木</div><h3 data-edit="">Mộc</h3><p data-edit="">Hồi phục, dây leo, khống chế và sức sống.</p></article>
+<article class="element-card tilt" style="--glow:#ff512f"><div class="glyph">火</div><h3 data-edit="">Hỏa</h3><p data-edit="">Sát thương bộc phát, thiêu đốt và áp lực.</p></article>
+<article class="element-card tilt" style="--glow:#55aaff"><div class="glyph">水</div><h3 data-edit="">Thủy</h3><p data-edit="">Uyển chuyển, phản đòn và kiểm soát nhịp đánh.</p></article>
+<article class="element-card tilt" style="--glow:#f6de58"><div class="glyph">雷</div><h3 data-edit="">Lôi</h3><p data-edit="">Tốc độ, stun và chuỗi combo điện.</p></article>
+<article class="element-card tilt" style="--glow:#a7e8ff"><div class="glyph">氷</div><h3 data-edit="">Băng</h3><p data-edit="">Đóng băng, làm chậm và tạo gai băng.</p></article>
+<article class="element-card tilt" style="--glow:#bfefff"><div class="glyph">風</div><h3 data-edit="">Phong</h3><p data-edit="">Dash, né tránh và chiến đấu trên không.</p></article>
+<article class="element-card tilt" style="--glow:#c9c9d2"><div class="glyph">金</div><h3 data-edit="">Kim</h3><p data-edit="">Tăng giáp, cường hóa vũ khí và phá phòng thủ.</p></article>
+<article class="element-card tilt" style="--glow:#c58b55"><div class="glyph">土</div><h3 data-edit="">Thổ</h3><p data-edit="">Chống chịu, chấn động và phòng thủ vững chắc.</p></article>
+<article class="element-card tilt" style="--glow:#fff1a3"><div class="glyph">光</div><h3 data-edit="">Quang</h3><p data-edit="">Thanh tẩy Void, phá phong ấn và bảo hộ.</p></article>
+<article class="element-card tilt" style="--glow:#8e39ff"><div class="glyph">影</div><h3 data-edit="">Ảnh</h3><p data-edit="">Ẩn thân, phân thân và chuyển vị trong bóng tối.</p></article>
+<article class="element-card tilt" style="--glow:#b300ff"><div class="glyph">Ø</div><h3 data-edit="">VOID</h3><p data-edit="">Không phải nguyên tố tự nhiên. Nó hấp thụ, bẻ cong và tha hóa mọi hệ.</p></article>
+</div><div class="rules reveal">
+<div class="rule"><div class="num">RULE / 01</div><h3 data-edit="">Đi qua từng vùng</h3><p data-edit="">Mỗi khu vực gắn với một hệ, một hệ sinh thái, quái vật và Guardian/Boss riêng.</p></div>
+<div class="rule"><div class="num">RULE / 02</div><h3 data-edit="">Đánh bại kẻ chiếm giữ Core</h3><p data-edit="">Kai chiến đấu với sinh vật Void hoặc Guardian bị tha hóa để lấy lại Element Core.</p></div>
+<div class="rule"><div class="num">RULE / 03</div><h3 data-edit="">Mở khóa hệ mới</h3><p data-edit="">Mỗi Core đồng bộ với Kai và mở ra kỹ năng mới, combo mới cùng đường đi mới trên bản đồ.</p></div>
+<div class="rule"><div class="num">RULE / 04</div><h3 data-edit="">Khắc chế &amp; kết hợp</h3><p data-edit="">Người chơi đổi hệ theo tình huống, tận dụng ưu thế trước từng loại quái và Boss.</p></div>
+<div class="rule"><div class="num">RULE / 05</div><h3 data-edit="">Chống sự tha hóa</h3><p data-edit="">Void có thể biến Hỏa thành Void Flame, Mộc thành Corrupted Forest, Băng thành Black Ice…</p></div>
+<div class="rule"><div class="num">RULE / FINAL</div><h3 data-edit="">Tiến vào The Abyss</h3><p data-edit="">Chỉ khi sở hữu đủ sức mạnh nguyên tố, Kai mới có thể bước vào trung tâm Void và đối đầu Boss cuối.</p></div>
+</div></div><div class="world-subsection"><div class="sub-no">02B / WORLD MAP</div><h3 class="sub-title" data-edit="">Mỗi vùng đất là một bước trong hành trình thu hồi sức mạnh.</h3><div class="map-block reveal tilt"><img alt="VOID WARRIOR world map" class="editable-img" src="assets/map.png"/><div class="map-label" data-edit="">Ruined Village · Desert · Ice · Lava · Void</div></div></div><div class="world-subsection"><div class="sub-no">02C / VOID BESTIARY</div><h3 class="sub-title" data-edit="">Những sinh vật canh giữ các vùng đã bị tha hóa.</h3><div class="monster-grid">
+<article class="monster tilt reveal"><h3 data-edit="">Abyss Gorath</h3><span data-edit="">BRUTE / ABYSS</span><img class="editable-img" src="assets/Abyss%20Gorath.png"/></article>
+<article class="monster tilt reveal"><h3 data-edit="">Nyx Wraith</h3><span data-edit="">WRAITH / SHADOW</span><img class="editable-img" src="assets/Nyx%20Wraith.png"/></article>
+<article class="monster tilt reveal"><h3 data-edit="">Varkhul</h3><span data-edit="">VOID KNIGHT</span><img class="editable-img" src="assets/Varkhul.png"/></article>
+<article class="monster tilt reveal"><h3 data-edit="">Azrath the Voidflame</h3><span data-edit="">DRAGON / VOIDFLAME</span><img class="editable-img" src="assets/Azrath%20the%20Voidflame.png"/></article>
+<article class="monster tilt reveal" style="grid-column:span 2"><h3 data-edit="">Dreadlord Kael</h3><span data-edit="">VOID COMMANDER / BOSS</span><img class="editable-img" src="assets/Dreadlord%20Kael.png"/></article>
+<article class="monster reveal" style="grid-column:span 2;background:url('assets/background.png') center/cover"><h3 data-edit="">Corrupted Biomes</h3><span data-edit="">THE WORLD AFTER VOID</span></article>
+</div></div></div></section><section class="section kai-sec" id="kai"><div class="wrap">
+<div class="section-no reveal">03 / CHARACTER — KAI</div><h2 class="section-title reveal"><span data-edit="">KAI</span> — <em data-edit="">THE SURVIVOR</em></h2><div class="char-meta reveal">
+<span><b>AGE</b> 19</span><span><b>ORIGIN</b> Mountain Village</span><span><b>ROLE</b> Element Bearer</span><span><b>GOAL</b> Restore Balance</span>
+</div>
+<div class="kai-layout">
+<div class="kai-art reveal"><div class="ring parallax" data-speed=".04"></div><img alt="Kai full body" class="editable-img parallax" data-speed="-.025" src="assets/Kai.png"/></div>
+<div>
+<div class="copy reveal"><p data-edit="">Kai, 19 tuổi, sinh ra tại một ngôi làng miền núi có truyền thống võ thuật lâu đời. Từ nhỏ cậu được người thầy huấn luyện kiếm thuật và võ thuật, nhưng chưa từng nghĩ mình sẽ trở thành một chiến binh thực sự.</p><p data-edit="">Đêm Void xâm chiếm, Kai không đủ mạnh để bảo vệ quê hương. Khi tỉnh lại giữa tro tàn, cậu mang theo thanh kiếm của người thầy và phát hiện cơ thể mình có khả năng hấp thụ — đồng bộ với những nguồn năng lượng mà người bình thường không thể kiểm soát.</p></div>
+<div class="timeline reveal">
+<div class="timeline-item"><b>ORIGIN</b><span data-edit="">Chiến binh trẻ của một ngôi làng miền núi, được truyền dạy võ thuật và kiếm thuật.</span></div>
+<div class="timeline-item"><b>TRAUMA</b><span data-edit="">Quê hương bị Void phá hủy. Cuộc báo thù trở thành động lực ban đầu của hành trình.</span></div>
+<div class="timeline-item"><b>GIFT</b><span data-edit="">Cơ thể có thể hấp thụ Element Core và sử dụng Void Energy mà không mất kiểm soát ngay lập tức.</span></div>
+<div class="timeline-item"><b>SYMBOL</b><span data-edit="">Khăn đỏ là ký ức về quê hương; thanh kiếm là di vật của người thầy; dấu ấn đỏ liên hệ với phong ấn cổ.</span></div>
+<div class="timeline-item"><b>ARC</b><span data-edit="">Từ “trả thù cho quê hương” đến “khôi phục cân bằng và ngăn thế giới khác chịu chung số phận”.</span></div>
+</div>
+</div>
+</div>
+</div></section><section class="section" id="storyboard"><div class="wrap">
+<div class="section-no reveal">04 / STORYBOARD — FINAL CHAPTER</div><h2 class="section-title reveal" data-edit="">Hành trình từ thảm họa đến <em>Void Mode.</em></h2>
+<div class="story-grid">
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-01.jpg"/><span class="tag">PAGE 01 / OPENING</span></figure>
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-02.jpg"/><span class="tag">PAGE 02 / THE VILLAGE</span></figure>
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-03.jpg"/><span class="tag">PAGE 03 / VOID ARRIVES</span></figure>
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-04.jpg"/><span class="tag">PAGE 04 / CHAOS</span></figure>
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-05.jpg"/><span class="tag">PAGE 05 / KAI</span></figure>
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-06.jpg"/><span class="tag">PAGE 06 / FIRST BATTLE</span></figure>
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-07.jpg"/><span class="tag">PAGE 07 / THE OATH</span></figure>
+<figure class="story reveal"><img class="editable-img" src="assets/storyboard-08.jpg"/><span class="tag">PAGE 08 / GAME LOBBY</span></figure>
+</div>
+</div></section>
+
+
+
+
+
+
+</main>
+<footer class="footer"><div class="wrap">
+<img alt="VOID WARRIOR logo" class="footer-logo editable-img" src="assets/logo-void-warrior.png"/>
+<div class="footer-grid"><div data-edit="">VOID WARRIOR — WORLD BUILDING ARCHIVE</div><div data-edit="">Dark Fantasy · Martial Arts · Elemental Core · Void</div><div>© 2026</div></div>
+</div></footer>
+<div class="editable-hint">EDIT MODE: click text to edit · click image to replace · Ctrl/Cmd+S to save</div>
+<input accept="image/*" hidden="" id="imagePicker" type="file"/>
+<script>
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const root=document.documentElement, cursor=$('.cursor'), dot=$('.cursor-dot');
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;root.style.setProperty('--mx',mx+'px');root.style.setProperty('--my',my+'px');dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){cx+=(mx-cx)*.16;cy+=(my-cy)*.16;cursor.style.left=cx+'px';cursor.style.top=cy+'px';requestAnimationFrame(loop)})();
+$$('a,button,.tilt,.editable-img').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('big'));el.addEventListener('mouseleave',()=>cursor.classList.remove('big'))});
+addEventListener('click',e=>{if(document.body.classList.contains('editing')&&e.target.closest('[contenteditable="true"]'))return;let b=document.createElement('i');b.className='burst';b.style.left=e.clientX+'px';b.style.top=e.clientY+'px';document.body.append(b);setTimeout(()=>b.remove(),750);for(let i=0;i<8;i++){let s=document.createElement('i');s.className='spark';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';let a=Math.PI*2*i/8,d=40+Math.random()*40;s.style.setProperty('--tx',Math.cos(a)*d+'px');s.style.setProperty('--ty',Math.sin(a)*d+'px');s.style.setProperty('--r',(a*180/Math.PI+90)+'deg');document.body.append(s);setTimeout(()=>s.remove(),650)}});
+addEventListener('mousemove',e=>{$$('.parallax').forEach(el=>{let s=parseFloat(el.dataset.speed||0);el.style.translate=((e.clientX-innerWidth/2)*s)+'px '+((e.clientY-innerHeight/2)*s)+'px'})});
+$$('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{if(innerWidth<900)return;let r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`});card.addEventListener('mouseleave',()=>card.style.transform='')});
+$$('.magnetic').forEach(el=>{el.addEventListener('mousemove',e=>{let r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.12}px,${(e.clientY-r.top-r.height/2)*.12}px)`});el.addEventListener('mouseleave',()=>el.style.transform='')});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});$$('.reveal').forEach(x=>io.observe(x));
+// horizontal wheel on element strip
+const elementTrack=$('#elementTrack'); if(elementTrack) elementTrack.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();e.currentTarget.scrollLeft+=e.deltaY*.9}},{passive:false});
+// Editable mode + local save
+const editBtn=$('#editBtn'); let editing=false, selectedImg=null;
+function setEditing(on){editing=on;document.body.classList.toggle('editing',on);editBtn.classList.toggle('active',on);editBtn.textContent=on?'Save & exit':'Edit mode';$$('[data-edit]').forEach((el,i)=>{el.contentEditable=on;el.dataset.editId='t'+i});if(!on)saveContent()}
+function saveContent(){let data={};$$('[data-edit]').forEach((el,i)=>data['t'+i]=el.innerHTML);$$('.editable-img').forEach((el,i)=>data['img'+i]=el.getAttribute('src'));localStorage.setItem('void-warrior-site-assets-v2',JSON.stringify(data))}
+function loadContent(){try{let data=JSON.parse(localStorage.getItem('void-warrior-site-assets-v2')||'{}');$$('[data-edit]').forEach((el,i)=>{if(data['t'+i]!=null)el.innerHTML=data['t'+i]});$$('.editable-img').forEach((el,i)=>{if(data['img'+i])el.src=data['img'+i]})}catch(e){}}
+editBtn.addEventListener('click',()=>setEditing(!editing));
+$$('.editable-img').forEach(img=>img.addEventListener('click',e=>{if(!editing)return;e.preventDefault();e.stopPropagation();selectedImg=img;$('#imagePicker').click()}));
+$('#imagePicker').addEventListener('change',e=>{let f=e.target.files[0];if(!f||!selectedImg)return;let r=new FileReader();r.onload=()=>{selectedImg.src=r.result;saveContent()};r.readAsDataURL(f);e.target.value=''});
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();saveContent();let old=editBtn.textContent;editBtn.textContent='Saved ✓';setTimeout(()=>editBtn.textContent=editing?'Save & exit':'Edit mode',900)}if(e.key==='Escape'&&editing)setEditing(false)});
+loadContent();
+</script>
+
+<script>
+// Asset health check: if a file is missing, show a clear message instead of a silent broken image.
+window.addEventListener('load', () => {
+  const bad = [...document.images].filter(img => !img.complete || img.naturalWidth === 0);
+  if (bad.length) {
+    const box = document.createElement('div');
+    box.style.cssText = 'position:fixed;left:16px;bottom:16px;z-index:9999;background:#e62b2b;color:white;padding:10px 14px;font:600 11px "Segoe UI",Arial,sans-serif;letter-spacing:.06em;border-radius:4px;box-shadow:0 10px 30px #0008';
+    box.textContent = 'Thiếu ' + bad.length + ' ảnh — hãy giữ index.html cạnh thư mục assets.';
+    document.body.appendChild(box);
+  }
+});
+</script>
+</body>
+</html>
