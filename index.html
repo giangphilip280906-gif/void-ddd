@@ -9,10 +9,10 @@
 <style>
   :root{
     --bg:#07070b; --panel:#101018; --ink:#f3f1ed; --muted:#9b99a7;
-    --red:#e62b2b; --purple:#8e39ff; --line:rgba(255,255,255,.13);
+    --red:#36a8ff; --purple:#8e39ff; --line:rgba(255,255,255,.13);
     --mx:50vw; --my:50vh; --ease:cubic-bezier(.2,.75,.25,1);
   }
-  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;overflow-x:hidden;cursor:none}
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans",Arial,Helvetica,sans-serif;overflow-x:hidden;cursor:none}
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(142,57,255,.08),transparent 65%);mix-blend-mode:screen}
   ::selection{background:var(--purple);color:#fff}
   a{color:inherit;text-decoration:none}.wrap{width:min(1460px,94vw);margin:auto}
@@ -38,13 +38,13 @@
   .element-track{display:flex;gap:14px;overflow:auto;padding:5px 0 30px;scrollbar-width:none}.element-track::-webkit-scrollbar{display:none}.element-card{flex:0 0 260px;height:360px;border:1px solid var(--line);position:relative;overflow:hidden;background:linear-gradient(145deg,#15151f,#0b0b11);padding:24px;transition:.35s var(--ease);transform-style:preserve-3d}.element-card:hover{border-color:rgba(255,255,255,.35);transform:translateY(-8px)}
   .element-card::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-80px;bottom:-70px;background:radial-gradient(circle,var(--glow),transparent 68%);filter:blur(8px);opacity:.7}.glyph{font-size:64px;font-weight:900;color:var(--glow);line-height:1;margin-bottom:100px;text-shadow:0 0 22px color-mix(in srgb,var(--glow),transparent 55%)}.element-card h3{font-size:25px;margin:0 0 10px}.element-card p{font-size:12px;line-height:1.55;color:var(--muted)}
   .rules{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.rule{border:1px solid var(--line);padding:30px;min-height:220px;background:#0b0b11;position:relative}.rule .num{font-size:11px;color:var(--red);letter-spacing:.2em}.rule h3{font-size:24px;margin:32px 0 10px}.rule p{color:var(--muted);line-height:1.65;font-size:14px}
-  .kai-sec{overflow:hidden}.kai-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:6vw;align-items:center}.kai-art{position:relative;min-height:720px}.kai-art img{position:absolute;height:100%;left:0;bottom:-10%;object-fit:contain;filter:drop-shadow(0 30px 35px #000)}.kai-art .ring{position:absolute;width:520px;height:520px;border:1px solid rgba(230,43,43,.35);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.kai-art .ring::before,.kai-art .ring::after{content:"";position:absolute;inset:45px;border:1px solid rgba(142,57,255,.28);border-radius:50%}.kai-art .ring::after{inset:110px}
+  .kai-sec{overflow:hidden}.kai-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:6vw;align-items:center}.kai-art{position:relative;min-height:720px}.kai-art img{position:absolute;height:100%;left:0;bottom:-10%;object-fit:contain;filter:drop-shadow(0 30px 35px #000)}.kai-art .ring{position:absolute;width:520px;height:520px;border:1px solid rgba(54,168,255,.35);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.kai-art .ring::before,.kai-art .ring::after{content:"";position:absolute;inset:45px;border:1px solid rgba(142,57,255,.28);border-radius:50%}.kai-art .ring::after{inset:110px}
   .timeline{border-top:1px solid var(--line);margin-top:38px}.timeline-item{display:grid;grid-template-columns:110px 1fr;gap:22px;border-bottom:1px solid var(--line);padding:22px 0}.timeline-item b{font-size:11px;color:var(--red);letter-spacing:.14em}.timeline-item span{color:#c7c3ce;line-height:1.65}
   .map-block{position:relative;height:min(82vw,860px);border:1px solid var(--line);overflow:hidden;background:#0a0a10}.map-block img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);filter:saturate(.82) contrast(1.06)}.map-block:hover img{transform:scale(1.035)}.map-label{position:absolute;left:24px;bottom:20px;background:rgba(7,7,11,.72);backdrop-filter:blur(10px);border:1px solid var(--line);padding:14px 16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
   .monster-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.monster{min-height:520px;border:1px solid var(--line);position:relative;overflow:hidden;background:linear-gradient(#13131c,#07070b)}.monster img{position:absolute;width:100%;height:82%;object-fit:contain;bottom:0;filter:drop-shadow(0 20px 25px #000);transition:.45s var(--ease)}.monster:hover img{transform:scale(1.06) translateY(-8px)}.monster h3{position:absolute;top:20px;left:20px;z-index:2;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:0}.monster span{position:absolute;top:46px;left:20px;z-index:2;color:var(--purple);font-size:10px;letter-spacing:.16em}
   .story-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.story{border:1px solid var(--line);overflow:hidden;background:#fff;position:relative}.story img{width:100%;height:auto;display:block;filter:grayscale(1);transition:.4s}.story:hover img{filter:grayscale(0);transform:scale(1.015)}.story .tag{position:absolute;top:12px;left:12px;background:#0a0a0d;color:#fff;padding:8px 10px;font-size:9px;letter-spacing:.14em}
-  .editable-hint{display:none;position:fixed;right:18px;bottom:18px;z-index:1500;background:#e62b2b;color:#fff;padding:12px 16px;font-size:11px;letter-spacing:.08em;box-shadow:0 10px 30px #000}.editing .editable-hint{display:block}.editing [contenteditable="true"]{outline:1px dashed rgba(230,43,43,.55);outline-offset:4px}.editing .editable-img{outline:1px dashed rgba(142,57,255,.7);cursor:pointer}
-  .footer{padding:70px 0 30px}.footer-logo{width:min(520px,80vw);filter:drop-shadow(0 0 25px rgba(230,43,43,.14))}.footer-grid{display:flex;justify-content:space-between;align-items:end;gap:30px;border-top:1px solid var(--line);padding-top:28px;margin-top:50px;color:var(--muted);font-size:11px;letter-spacing:.09em}
+  .editable-hint{display:none;position:fixed;right:18px;bottom:18px;z-index:1500;background:#36a8ff;color:#fff;padding:12px 16px;font-size:11px;letter-spacing:.08em;box-shadow:0 10px 30px #000}.editing .editable-hint{display:block}.editing [contenteditable="true"]{outline:1px dashed rgba(54,168,255,.55);outline-offset:4px}.editing .editable-img{outline:1px dashed rgba(142,57,255,.7);cursor:pointer}
+  .footer{padding:70px 0 30px}.footer-logo{width:min(520px,80vw);filter:drop-shadow(0 0 25px rgba(54,168,255,.14))}.footer-grid{display:flex;justify-content:space-between;align-items:end;gap:30px;border-top:1px solid var(--line);padding-top:28px;margin-top:50px;color:var(--muted);font-size:11px;letter-spacing:.09em}
   .burst{position:fixed;pointer-events:none;z-index:1900;border:1px solid var(--purple);border-radius:50%;width:14px;height:14px;transform:translate(-50%,-50%);animation:burst .7s ease-out forwards}.spark{position:fixed;pointer-events:none;z-index:1900;width:3px;height:26px;background:linear-gradient(var(--purple),transparent);transform-origin:50% 100%;animation:spark .6s ease-out forwards}@keyframes burst{to{width:120px;height:120px;opacity:0}}@keyframes spark{to{transform:translate(var(--tx),var(--ty)) rotate(var(--r)) scaleY(.1);opacity:0}}
   .reveal{opacity:0;transform:translateY(35px);transition:.9s var(--ease)}.reveal.in{opacity:1;transform:none}
   @media(max-width:900px){body{cursor:auto}.cursor,.cursor-dot{display:none}.navlinks{display:none}.hero-grid{grid-template-columns:1fr}.hero-char{position:absolute;right:-12%;bottom:0;opacity:.58;height:65vh}.hero-char img{max-width:74vw}.hero h1{font-size:clamp(64px,20vw,120px)}.hero-copy{max-width:78%}.two-col,.kai-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.rules{grid-template-columns:1fr}.monster-grid{grid-template-columns:repeat(2,1fr)}.kai-art{min-height:560px}.story-grid{grid-template-columns:1fr}.section{padding:92px 0}}
@@ -71,6 +71,7 @@
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
@@ -78,22 +79,22 @@
 /* VOID WARRIOR — NEW MONTSERRAT EDITION */
 :root{
   --bg:#050507; --panel:#0d0d12; --panel2:#12121a; --ink:#f7f4ef;
-  --muted:#a6a2ad; --red:#ff3434; --purple:#8f45ff; --line:rgba(255,255,255,.14);
+  --muted:#a6a2ad; --red:#36a8ff; --purple:#8f45ff; --line:rgba(255,255,255,.14);
   --ease:cubic-bezier(.2,.75,.25,1);
 }
 html{scroll-padding-top:72px}
-body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-serif!important}
+body,button,input,textarea,select{font-family:"Noto Sans",Arial,Helvetica,sans-serif!important}
 body{background:var(--bg);font-weight:400;letter-spacing:0}
 body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 78%)}
 header{background:rgba(5,5,7,.66);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 10px 40px rgba(0,0,0,.18)}
 nav{height:76px}.brand{font-weight:900;letter-spacing:.22em}.navlinks{font-weight:700}.navlinks a{position:relative}.navlinks a:after{content:"";position:absolute;left:0;right:100%;bottom:-8px;height:2px;background:linear-gradient(90deg,var(--red),var(--purple));transition:.28s var(--ease)}.navlinks a:hover:after{right:0}
-.edit-btn{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:800;border-radius:999px;padding:11px 17px}
+.edit-btn{font-family:"Noto Sans",Arial,sans-serif!important;font-weight:800;border-radius:999px;padding:11px 17px}
 
-.hero{min-height:760px;background:radial-gradient(circle at 78% 38%,rgba(143,69,255,.12),transparent 35%),radial-gradient(circle at 25% 70%,rgba(255,52,52,.09),transparent 32%),#050507}
+.hero{min-height:760px;background:radial-gradient(circle at 78% 38%,rgba(143,69,255,.12),transparent 35%),radial-gradient(circle at 25% 70%,rgba(54,168,255,.09),transparent 32%),#050507}
 .hero:before{content:"VOID WARRIOR";position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);white-space:nowrap;font-size:clamp(96px,18vw,300px);font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.018);z-index:1;pointer-events:none}
 .hero-bg{opacity:.58;filter:saturate(.7) contrast(1.15)}
 .hero-grid{grid-template-columns:1.05fr .95fr;padding-top:140px;padding-bottom:44px}
-.eyebrow{font-weight:800;color:#d8d4dc;letter-spacing:.26em}.hero h1{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900;letter-spacing:-.075em;line-height:.76}.hero h1 .void{-webkit-text-stroke:1.4px #fff}.hero h1 .warrior{color:var(--red);text-shadow:0 0 42px rgba(255,52,52,.18)}
+.eyebrow{font-weight:800;color:#d8d4dc;letter-spacing:.26em}.hero h1{font-family:"Noto Sans",Arial,sans-serif!important;font-weight:900;letter-spacing:-.075em;line-height:.76}.hero h1 .void{-webkit-text-stroke:1.4px #fff}.hero h1 .warrior{color:var(--red);text-shadow:0 0 42px rgba(54,168,255,.18)}
 .hero-copy{font-size:16px;line-height:1.85;color:#c9c5cf;font-weight:500}.hero-copy strong{font-weight:800}
 .hero-char{filter:drop-shadow(0 40px 50px rgba(0,0,0,.9))}.hero-char:after{content:"10 ELEMENT CORES / 01 VOID";position:absolute;right:0;bottom:6%;font-size:10px;letter-spacing:.2em;font-weight:800;color:#fff;border:1px solid rgba(255,255,255,.16);background:rgba(5,5,7,.6);backdrop-filter:blur(12px);padding:12px 14px}
 .scroll-note{font-weight:700}
@@ -102,29 +103,29 @@ nav{height:76px}.brand{font-weight:900;letter-spacing:.22em}.navlinks{font-weigh
 .section:before{content:"";position:absolute;left:0;top:0;width:120px;height:1px;background:linear-gradient(90deg,var(--red),transparent)}
 #overview{background:linear-gradient(160deg,#07070a 0%,#0b090e 52%,#10070a 100%)}
 #world{background:radial-gradient(circle at 80% 20%,rgba(143,69,255,.08),transparent 28%),#07070b}
-#kai{background:radial-gradient(circle at 18% 50%,rgba(255,52,52,.075),transparent 30%),#060609}
+#kai{background:radial-gradient(circle at 18% 50%,rgba(54,168,255,.075),transparent 30%),#060609}
 #storyboard{background:linear-gradient(180deg,#050507,#0c0710 62%,#050507)}
-.section-no,.sub-no{font-weight:800;color:var(--red);letter-spacing:.24em}.section-title{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900;letter-spacing:-.055em;line-height:.88}.section-title em{-webkit-text-stroke:1.2px rgba(255,255,255,.72)}
+.section-no,.sub-no{font-weight:800;color:var(--red);letter-spacing:.24em}.section-title{font-family:"Noto Sans",Arial,sans-serif!important;font-weight:900;letter-spacing:-.055em;line-height:.88}.section-title em{-webkit-text-stroke:1.2px rgba(255,255,255,.72)}
 .world-title{letter-spacing:.018em!important;line-height:1.02!important;max-width:100%;word-spacing:.04em}
 .world-title>span,.world-title>em{display:block}
 .world-title>span{margin-bottom:.12em}
 .world-title>em{letter-spacing:.012em;font-size:.92em}
-.overview-lead{font-weight:500;line-height:1.85;color:#c5c1ca}.flow-label span,.overview-divider span,.hier-root{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900;border:0;background:#f5f1eb;color:#111117;box-shadow:0 18px 60px rgba(0,0,0,.3);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
-.overview-grid{gap:18px}.overview-card{min-height:280px;background:linear-gradient(145deg,rgba(255,255,255,.052),rgba(255,255,255,.018));border-color:rgba(255,255,255,.12);border-radius:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.012)}.overview-card:hover{transform:translateY(-8px);border-color:rgba(255,52,52,.62);box-shadow:0 30px 90px rgba(0,0,0,.26)}
-.overview-index{font-weight:800;color:var(--red)}.overview-card h3,.sub-title,.big-quote{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900}.overview-card p,.copy,.hier-card p,.rule p,.timeline-item span{font-weight:500}
+.overview-lead{font-weight:500;line-height:1.85;color:#c5c1ca}.flow-label span,.overview-divider span,.hier-root{font-family:"Noto Sans",Arial,sans-serif!important;font-weight:900;border:0;background:#f5f1eb;color:#111117;box-shadow:0 18px 60px rgba(0,0,0,.3);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.overview-grid{gap:18px}.overview-card{min-height:280px;background:linear-gradient(145deg,rgba(255,255,255,.052),rgba(255,255,255,.018));border-color:rgba(255,255,255,.12);border-radius:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.012)}.overview-card:hover{transform:translateY(-8px);border-color:rgba(54,168,255,.62);box-shadow:0 30px 90px rgba(0,0,0,.26)}
+.overview-index{font-weight:800;color:var(--red)}.overview-card h3,.sub-title,.big-quote{font-family:"Noto Sans",Arial,sans-serif!important;font-weight:900}.overview-card p,.copy,.hier-card p,.rule p,.timeline-item span{font-weight:500}
 .overview-divider{margin-top:105px}.narrative-step{background:linear-gradient(160deg,#101016,#0a0a0f);border-color:rgba(255,255,255,.12)}.narrative-step b{font-weight:900}.narrative-step span{font-weight:600}.narrative-arrow{color:var(--red)}
 
 .big-quote{border-left:5px solid var(--red);padding-left:30px}.stats{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.12)}.stat{background:#0b0b10}.stat b{font-weight:900}.stat span{font-weight:700}.hier-card{background:linear-gradient(145deg,#0f0f15,#09090d);border-color:rgba(255,255,255,.12)}.hier-card b{font-weight:900}.world-subsection{border-top-color:rgba(255,255,255,.12)}
-.element-track{gap:18px}.element-card{height:380px;background:linear-gradient(155deg,#14141b,#09090d 72%);border-color:rgba(255,255,255,.12)}.element-card:hover{transform:translateY(-12px) scale(1.012);box-shadow:0 34px 90px rgba(0,0,0,.3)}.glyph{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:900}.element-card h3{font-weight:900}.element-card p{font-weight:500}.rule{background:linear-gradient(145deg,#0f0f14,#08080c);border-color:rgba(255,255,255,.12)}.rule .num{font-weight:900}.rule h3{font-weight:900}
+.element-track{gap:18px}.element-card{height:380px;background:linear-gradient(155deg,#14141b,#09090d 72%);border-color:rgba(255,255,255,.12)}.element-card:hover{transform:translateY(-12px) scale(1.012);box-shadow:0 34px 90px rgba(0,0,0,.3)}.glyph{font-family:"Noto Sans",Arial,sans-serif!important;font-weight:900}.element-card h3{font-weight:900}.element-card p{font-weight:500}.rule{background:linear-gradient(145deg,#0f0f14,#08080c);border-color:rgba(255,255,255,.12)}.rule .num{font-weight:900}.rule h3{font-weight:900}
 
-.char-meta span{font-weight:700;background:rgba(255,255,255,.025)}.char-meta b{font-weight:900}.kai-art .ring{border-color:rgba(255,52,52,.45);box-shadow:0 0 90px rgba(255,52,52,.06)}.kai-art .ring:before{border-color:rgba(143,69,255,.35)}.timeline-item b{font-weight:900}.monster{background:linear-gradient(180deg,#121219,#060608);border-color:rgba(255,255,255,.12)}.monster .monster-name{font-weight:900}
+.char-meta span{font-weight:700;background:rgba(255,255,255,.025)}.char-meta b{font-weight:900}.kai-art .ring{border-color:rgba(54,168,255,.45);box-shadow:0 0 90px rgba(54,168,255,.06)}.kai-art .ring:before{border-color:rgba(143,69,255,.35)}.timeline-item b{font-weight:900}.monster{background:linear-gradient(180deg,#121219,#060608);border-color:rgba(255,255,255,.12)}.monster .monster-name{font-weight:900}
 .map-block{border-color:rgba(255,255,255,.12);box-shadow:0 34px 100px rgba(0,0,0,.28)}.map-label{font-weight:800}
 
-.story-grid{gap:22px}.story{border-color:rgba(255,255,255,.14);background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.2);transition:.4s var(--ease)}.story:hover{transform:translateY(-8px);box-shadow:0 40px 100px rgba(0,0,0,.34)}.story .tag{font-family:"Segoe UI",Arial,sans-serif!important;font-weight:800;background:rgba(5,5,7,.88);backdrop-filter:blur(8px)}
+.story-grid{gap:22px}.story{border-color:rgba(255,255,255,.14);background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.2);transition:.4s var(--ease)}.story:hover{transform:translateY(-8px);box-shadow:0 40px 100px rgba(0,0,0,.34)}.story .tag{font-family:"Noto Sans",Arial,sans-serif!important;font-weight:800;background:rgba(5,5,7,.88);backdrop-filter:blur(8px)}
 .footer-grid{font-weight:700}
 
 /* EDIT MODE remains functional; these make editable areas clearer */
-.editing [contenteditable="true"]{outline:1px dashed rgba(255,52,52,.7)!important;background:rgba(255,52,52,.025)}
+.editing [contenteditable="true"]{outline:1px dashed rgba(54,168,255,.7)!important;background:rgba(54,168,255,.025)}
 .editing .editable-img{outline:1px dashed rgba(143,69,255,.82)!important}
 
 @media(max-width:900px){
@@ -133,9 +134,9 @@ nav{height:76px}.brand{font-weight:900;letter-spacing:.22em}.navlinks{font-weigh
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.parallax{transform:none!important}}
 
 /* Vietnamese heading fix — local Windows-safe fonts, no webfont dependency */
-body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-serif!important}
+body,button,input,textarea,select{font-family:"Noto Sans",Arial,Helvetica,sans-serif!important}
 .world-title{
-  font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;
+  font-family:"Noto Sans",Arial,Helvetica,sans-serif!important;
   font-weight:900!important;
   font-size:clamp(48px,7vw,118px)!important;
   line-height:1.02!important;
@@ -154,7 +155,7 @@ body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-se
 }
 .world-title>span{margin-bottom:.10em}
 .world-title>em{
-  font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;
+  font-family:"Noto Sans",Arial,Helvetica,sans-serif!important;
   font-style:normal!important;
   font-size:.78em!important;
   font-weight:900!important;
@@ -173,13 +174,42 @@ body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-se
   .world-title>em{font-size:.68em!important}
 }
 </style>
+<style id="site-fixes">
+:root{--red:#36a8ff;--purple:#7466ff}
+body{cursor:auto}
+.cursor,.cursor-dot{display:none}
+.edit-btn{cursor:pointer}
+.menu-btn{display:none;border:1px solid var(--line);background:#101018;color:white;padding:9px 13px;font-size:19px;cursor:pointer}
+:where(a,button,[contenteditable="true"]):focus-visible{outline:2px solid #74c8ff;outline-offset:4px}
+.editable-hint{background:#116aa7;max-width:min(520px,calc(100vw - 36px));line-height:1.6}
+.editable-hint button{margin:5px 3px 0;border:1px solid #fff7;background:#071521;color:#fff;padding:6px 9px;cursor:pointer}
+.element-track{scrollbar-width:thin;scrollbar-color:#36a8ff #181823}
+.monster img,.story img{max-width:100%}
+@media(max-width:900px){
+ .menu-btn{display:block;margin-left:auto}
+ .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:#080a12;border-bottom:1px solid var(--line);padding:20px 5vw;flex-direction:column;gap:19px;font-size:14px}
+ .navlinks.open{display:flex}
+ .hero{min-height:650px}.hero-char{pointer-events:none}
+ .kai-art .ring{max-width:90vw;max-height:90vw}
+}
+@media(max-width:560px){
+ .monster[style*="grid-column:span 2"]{grid-column:1 / -1!important}
+ .hero h1{font-size:clamp(54px,17vw,92px)}
+ .section{padding:75px 0}
+ .world-title{font-size:clamp(34px,10vw,52px)!important}
+ .map-block{height:65vw}
+ .footer-grid{flex-wrap:wrap}
+}
+@media(hover:none),(pointer:coarse){.element-card:hover,.story:hover,.overview-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.cursor,.cursor-dot,.burst,.spark{display:none!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
 <div class="noise"></div><div class="cursor"></div><div class="cursor-dot"></div>
 <header><div class="wrap"><nav>
 <a class="brand magnetic" href="#top">VOID <b>WARRIOR</b></a>
-<div class="navlinks"><a href="#overview">Overview</a><a href="#world">Worldbuilding</a><a href="#kai">Kai</a><a href="#storyboard">Storyboard</a></div>
-<button class="edit-btn magnetic" id="editBtn">Edit mode</button>
+<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteLinks" aria-label="Mở menu">☰</button><div class="navlinks" id="siteLinks"><a href="#overview">Overview</a><a href="#world">Worldbuilding</a><a href="#kai">Kai</a><a href="#storyboard">Storyboard</a></div>
+<button class="edit-btn magnetic" id="editBtn" type="button">Chỉnh sửa</button>
 </nav></div></header>
 <main id="top">
 <section class="hero">
@@ -265,11 +295,11 @@ body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-se
 <div class="rule"><div class="num">RULE / 05</div><h3 data-edit="">Chống sự tha hóa</h3><p data-edit="">Void có thể biến Hỏa thành Void Flame, Mộc thành Corrupted Forest, Băng thành Black Ice…</p></div>
 <div class="rule"><div class="num">RULE / FINAL</div><h3 data-edit="">Tiến vào The Abyss</h3><p data-edit="">Chỉ khi sở hữu đủ sức mạnh nguyên tố, Kai mới có thể bước vào trung tâm Void và đối đầu Boss cuối.</p></div>
 </div></div><div class="world-subsection"><div class="sub-no">02B / WORLD MAP</div><h3 class="sub-title" data-edit="">Mỗi vùng đất là một bước trong hành trình thu hồi sức mạnh.</h3><div class="map-block reveal tilt"><img alt="VOID WARRIOR world map" class="editable-img" src="assets/map.png"/><div class="map-label" data-edit="">Ruined Village · Desert · Ice · Lava · Void</div></div></div><div class="world-subsection"><div class="sub-no">02C / VOID BESTIARY</div><h3 class="sub-title" data-edit="">Những sinh vật canh giữ các vùng đã bị tha hóa.</h3><div class="monster-grid">
-<article class="monster tilt reveal"><h3 data-edit="">Abyss Gorath</h3><span data-edit="">BRUTE / ABYSS</span><img class="editable-img" src="assets/Abyss%20Gorath.png"/></article>
-<article class="monster tilt reveal"><h3 data-edit="">Nyx Wraith</h3><span data-edit="">WRAITH / SHADOW</span><img class="editable-img" src="assets/Nyx%20Wraith.png"/></article>
-<article class="monster tilt reveal"><h3 data-edit="">Varkhul</h3><span data-edit="">VOID KNIGHT</span><img class="editable-img" src="assets/Varkhul.png"/></article>
-<article class="monster tilt reveal"><h3 data-edit="">Azrath the Voidflame</h3><span data-edit="">DRAGON / VOIDFLAME</span><img class="editable-img" src="assets/Azrath%20the%20Voidflame.png"/></article>
-<article class="monster tilt reveal" style="grid-column:span 2"><h3 data-edit="">Dreadlord Kael</h3><span data-edit="">VOID COMMANDER / BOSS</span><img class="editable-img" src="assets/Dreadlord%20Kael.png"/></article>
+<article class="monster tilt reveal"><h3 data-edit="">Abyss Gorath</h3><span data-edit="">BRUTE / ABYSS</span><img class="editable-img" alt="Sinh vật Abyss Gorath" loading="lazy" src="assets/Abyss%20Gorath.png"/></article>
+<article class="monster tilt reveal"><h3 data-edit="">Nyx Wraith</h3><span data-edit="">WRAITH / SHADOW</span><img class="editable-img" alt="Sinh vật Nyx Wraith" loading="lazy" src="assets/Nyx%20Wraith.png"/></article>
+<article class="monster tilt reveal"><h3 data-edit="">Varkhul</h3><span data-edit="">VOID KNIGHT</span><img class="editable-img" alt="Sinh vật Varkhul" loading="lazy" src="assets/Varkhul.png"/></article>
+<article class="monster tilt reveal"><h3 data-edit="">Azrath the Voidflame</h3><span data-edit="">DRAGON / VOIDFLAME</span><img class="editable-img" alt="Sinh vật Azrath the Voidflame" loading="lazy" src="assets/Azrath%20the%20Voidflame.png"/></article>
+<article class="monster tilt reveal" style="grid-column:span 2"><h3 data-edit="">Dreadlord Kael</h3><span data-edit="">VOID COMMANDER / BOSS</span><img class="editable-img" alt="Sinh vật Dreadlord Kael" loading="lazy" src="assets/Dreadlord%20Kael.png"/></article>
 <article class="monster reveal" style="grid-column:span 2;background:url('assets/background.png') center/cover"><h3 data-edit="">Corrupted Biomes</h3><span data-edit="">THE WORLD AFTER VOID</span></article>
 </div></div></div></section><section class="section kai-sec" id="kai"><div class="wrap">
 <div class="section-no reveal">03 / CHARACTER — KAI</div><h2 class="section-title reveal"><span data-edit="">KAI</span> — <em data-edit="">THE SURVIVOR</em></h2><div class="char-meta reveal">
@@ -291,14 +321,14 @@ body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-se
 </div></section><section class="section" id="storyboard"><div class="wrap">
 <div class="section-no reveal">04 / STORYBOARD — FINAL CHAPTER</div><h2 class="section-title reveal" data-edit="">Hành trình từ thảm họa đến <em>Void Mode.</em></h2>
 <div class="story-grid">
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-01.jpg"/><span class="tag">PAGE 01 / OPENING</span></figure>
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-02.jpg"/><span class="tag">PAGE 02 / THE VILLAGE</span></figure>
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-03.jpg"/><span class="tag">PAGE 03 / VOID ARRIVES</span></figure>
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-04.jpg"/><span class="tag">PAGE 04 / CHAOS</span></figure>
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-05.jpg"/><span class="tag">PAGE 05 / KAI</span></figure>
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-06.jpg"/><span class="tag">PAGE 06 / FIRST BATTLE</span></figure>
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-07.jpg"/><span class="tag">PAGE 07 / THE OATH</span></figure>
-<figure class="story reveal"><img class="editable-img" src="assets/storyboard-08.jpg"/><span class="tag">PAGE 08 / GAME LOBBY</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Sinh vật storyboard-01.jpg" loading="lazy" src="assets/storyboard-01.jpg"/><span class="tag">PAGE 01 / OPENING</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Storyboard VOID WARRIOR trang 2" loading="lazy" src="assets/storyboard-02.jpg"/><span class="tag">PAGE 02 / THE VILLAGE</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Storyboard VOID WARRIOR trang 3" loading="lazy" src="assets/storyboard-03.jpg"/><span class="tag">PAGE 03 / VOID ARRIVES</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Storyboard VOID WARRIOR trang 4" loading="lazy" src="assets/storyboard-04.jpg"/><span class="tag">PAGE 04 / CHAOS</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Storyboard VOID WARRIOR trang 5" loading="lazy" src="assets/storyboard-05.jpg"/><span class="tag">PAGE 05 / KAI</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Storyboard VOID WARRIOR trang 6" loading="lazy" src="assets/storyboard-06.jpg"/><span class="tag">PAGE 06 / FIRST BATTLE</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Storyboard VOID WARRIOR trang 7" loading="lazy" src="assets/storyboard-07.jpg"/><span class="tag">PAGE 07 / THE OATH</span></figure>
+<figure class="story reveal"><img class="editable-img" alt="Storyboard VOID WARRIOR trang 8" loading="lazy" src="assets/storyboard-08.jpg"/><span class="tag">PAGE 08 / GAME LOBBY</span></figure>
 </div>
 </div></section>
 
@@ -312,7 +342,7 @@ body,button,input,textarea,select{font-family:"Segoe UI",Arial,Helvetica,sans-se
 <img alt="VOID WARRIOR logo" class="footer-logo editable-img" src="assets/logo-void-warrior.png"/>
 <div class="footer-grid"><div data-edit="">VOID WARRIOR — WORLD BUILDING ARCHIVE</div><div data-edit="">Dark Fantasy · Martial Arts · Elemental Core · Void</div><div>© 2026</div></div>
 </div></footer>
-<div class="editable-hint">EDIT MODE: click text to edit · click image to replace · Ctrl/Cmd+S to save</div>
+<div class="editable-hint">Chỉnh sửa trên thiết bị này · Chạm chữ để sửa · Chạm ảnh để thay · Ctrl/Cmd+S để lưu <button type="button" id="exportBtn">Xuất bản sao</button> <button type="button" id="importBtn">Nhập bản sao</button></div><input id="importPicker" type="file" accept="application/json" hidden>
 <input accept="image/*" hidden="" id="imagePicker" type="file"/>
 <script>
 const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
@@ -321,22 +351,22 @@ let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
 addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;root.style.setProperty('--mx',mx+'px');root.style.setProperty('--my',my+'px');dot.style.left=mx+'px';dot.style.top=my+'px'});
 (function loop(){cx+=(mx-cx)*.16;cy+=(my-cy)*.16;cursor.style.left=cx+'px';cursor.style.top=cy+'px';requestAnimationFrame(loop)})();
 $$('a,button,.tilt,.editable-img').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('big'));el.addEventListener('mouseleave',()=>cursor.classList.remove('big'))});
-addEventListener('click',e=>{if(document.body.classList.contains('editing')&&e.target.closest('[contenteditable="true"]'))return;let b=document.createElement('i');b.className='burst';b.style.left=e.clientX+'px';b.style.top=e.clientY+'px';document.body.append(b);setTimeout(()=>b.remove(),750);for(let i=0;i<8;i++){let s=document.createElement('i');s.className='spark';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';let a=Math.PI*2*i/8,d=40+Math.random()*40;s.style.setProperty('--tx',Math.cos(a)*d+'px');s.style.setProperty('--ty',Math.sin(a)*d+'px');s.style.setProperty('--r',(a*180/Math.PI+90)+'deg');document.body.append(s);setTimeout(()=>s.remove(),650)}});
-addEventListener('mousemove',e=>{$$('.parallax').forEach(el=>{let s=parseFloat(el.dataset.speed||0);el.style.translate=((e.clientX-innerWidth/2)*s)+'px '+((e.clientY-innerHeight/2)*s)+'px'})});
+addEventListener('click',e=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches||e.target.closest('[contenteditable],#imagePicker,#importPicker'))return;if(document.body.classList.contains('editing')&&e.target.closest('[contenteditable="true"]'))return;let b=document.createElement('i');b.className='burst';b.style.left=e.clientX+'px';b.style.top=e.clientY+'px';document.body.append(b);setTimeout(()=>b.remove(),750);for(let i=0;i<8;i++){let s=document.createElement('i');s.className='spark';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';let a=Math.PI*2*i/8,d=40+Math.random()*40;s.style.setProperty('--tx',Math.cos(a)*d+'px');s.style.setProperty('--ty',Math.sin(a)*d+'px');s.style.setProperty('--r',(a*180/Math.PI+90)+'deg');document.body.append(s);setTimeout(()=>s.remove(),650)}});
+addEventListener('mousemove',e=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;$('.parallax').forEach(el=>{let s=parseFloat(el.dataset.speed||0);el.style.translate=((e.clientX-innerWidth/2)*s)+'px '+((e.clientY-innerHeight/2)*s)+'px'})});
 $$('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{if(innerWidth<900)return;let r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`});card.addEventListener('mouseleave',()=>card.style.transform='')});
 $$('.magnetic').forEach(el=>{el.addEventListener('mousemove',e=>{let r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.12}px,${(e.clientY-r.top-r.height/2)*.12}px)`});el.addEventListener('mouseleave',()=>el.style.transform='')});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});$$('.reveal').forEach(x=>io.observe(x));
 // horizontal wheel on element strip
-const elementTrack=$('#elementTrack'); if(elementTrack) elementTrack.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();e.currentTarget.scrollLeft+=e.deltaY*.9}},{passive:false});
+const elementTrack=$('#elementTrack'); if(elementTrack) elementTrack.addEventListener('wheel',e=>{if(e.shiftKey&&Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();e.currentTarget.scrollLeft+=e.deltaY*.9}},{passive:false});
 // Editable mode + local save
 const editBtn=$('#editBtn'); let editing=false, selectedImg=null;
-function setEditing(on){editing=on;document.body.classList.toggle('editing',on);editBtn.classList.toggle('active',on);editBtn.textContent=on?'Save & exit':'Edit mode';$$('[data-edit]').forEach((el,i)=>{el.contentEditable=on;el.dataset.editId='t'+i});if(!on)saveContent()}
-function saveContent(){let data={};$$('[data-edit]').forEach((el,i)=>data['t'+i]=el.innerHTML);$$('.editable-img').forEach((el,i)=>data['img'+i]=el.getAttribute('src'));localStorage.setItem('void-warrior-site-assets-v2',JSON.stringify(data))}
+function setEditing(on){editing=on;document.body.classList.toggle('editing',on);editBtn.classList.toggle('active',on);editBtn.textContent=on?'Lưu trên thiết bị':'Chỉnh sửa';$$('[data-edit]').forEach((el,i)=>{el.contentEditable=on;el.dataset.editId='t'+i});if(!on)saveContent()}
+function saveContent(){let data={};$$('[data-edit]').forEach((el,i)=>data['t'+i]=el.innerHTML);$$('.editable-img').forEach((el,i)=>data['img'+i]=el.getAttribute('src'));try{localStorage.setItem('void-warrior-site-assets-v2',JSON.stringify(data));return true}catch(err){alert('Không đủ dung lượng để lưu ảnh trên trình duyệt. Hãy dùng ảnh nhỏ hơn hoặc xuất bản sao.');return false}}
 function loadContent(){try{let data=JSON.parse(localStorage.getItem('void-warrior-site-assets-v2')||'{}');$$('[data-edit]').forEach((el,i)=>{if(data['t'+i]!=null)el.innerHTML=data['t'+i]});$$('.editable-img').forEach((el,i)=>{if(data['img'+i])el.src=data['img'+i]})}catch(e){}}
 editBtn.addEventListener('click',()=>setEditing(!editing));
 $$('.editable-img').forEach(img=>img.addEventListener('click',e=>{if(!editing)return;e.preventDefault();e.stopPropagation();selectedImg=img;$('#imagePicker').click()}));
-$('#imagePicker').addEventListener('change',e=>{let f=e.target.files[0];if(!f||!selectedImg)return;let r=new FileReader();r.onload=()=>{selectedImg.src=r.result;saveContent()};r.readAsDataURL(f);e.target.value=''});
-addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();saveContent();let old=editBtn.textContent;editBtn.textContent='Saved ✓';setTimeout(()=>editBtn.textContent=editing?'Save & exit':'Edit mode',900)}if(e.key==='Escape'&&editing)setEditing(false)});
+$('#imagePicker').addEventListener('change',e=>{let f=e.target.files[0];if(!f||!selectedImg)return;if(f.size>450000){alert('Ảnh quá lớn để lưu trên trình duyệt. Hãy chọn ảnh dưới 450 KB.');return}let r=new FileReader();r.onload=()=>{selectedImg.src=r.result;saveContent()};r.readAsDataURL(f);e.target.value=''});
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();saveContent();let old=editBtn.textContent;editBtn.textContent='Đã lưu ✓';setTimeout(()=>editBtn.textContent=editing?'Lưu trên thiết bị':'Chỉnh sửa',900)}if(e.key==='Escape'&&editing)setEditing(false)});
 loadContent();
 </script>
 
@@ -346,11 +376,20 @@ window.addEventListener('load', () => {
   const bad = [...document.images].filter(img => !img.complete || img.naturalWidth === 0);
   if (bad.length) {
     const box = document.createElement('div');
-    box.style.cssText = 'position:fixed;left:16px;bottom:16px;z-index:9999;background:#e62b2b;color:white;padding:10px 14px;font:600 11px "Segoe UI",Arial,sans-serif;letter-spacing:.06em;border-radius:4px;box-shadow:0 10px 30px #0008';
+    box.style.cssText = 'position:fixed;left:16px;bottom:16px;z-index:9999;background:#36a8ff;color:white;padding:10px 14px;font:600 11px "Noto Sans",Arial,sans-serif;letter-spacing:.06em;border-radius:4px;box-shadow:0 10px 30px #0008';
     box.textContent = 'Thiếu ' + bad.length + ' ảnh — hãy giữ index.html cạnh thư mục assets.';
     document.body.appendChild(box);
   }
 });
+</script>
+<script>
+const motionAllowed=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+const menuBtn=document.getElementById('menuBtn'),siteLinks=document.getElementById('siteLinks');
+menuBtn.addEventListener('click',()=>{const open=siteLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Đóng menu':'Mở menu')});
+siteLinks.addEventListener('click',e=>{if(e.target.closest('a')){siteLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}});
+document.getElementById('exportBtn').addEventListener('click',()=>{const data=localStorage.getItem('void-warrior-site-assets-v2')||'{}';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='void-warrior-content.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importPicker').click());
+document.getElementById('importPicker').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data!=='object'||Array.isArray(data))throw Error();localStorage.setItem('void-warrior-site-assets-v2',JSON.stringify(data));location.reload()}catch(err){alert('Không thể nhập tệp nội dung hoặc trình duyệt không đủ dung lượng.')}});
 </script>
 </body>
 </html>
