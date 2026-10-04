@@ -221,7 +221,7 @@ body{cursor:auto}
 #storyboard .section-title{font-size:clamp(36px,5.8vw,84px);line-height:1.28;letter-spacing:.005em;word-spacing:.06em;padding-top:.15em;margin-bottom:48px}
 #storyboard .section-title em{display:block;margin-top:.12em}
 @media(max-width:560px){#storyboard .section-title{font-size:clamp(30px,8vw,44px);line-height:1.35;letter-spacing:0;word-spacing:.03em}}
-</style></head>
+</style><style>.game-story{padding:clamp(24px,4vw,52px);border:1px solid var(--line);background:linear-gradient(135deg,#10121e,#090910)}.game-story h3{font-size:clamp(26px,3vw,42px);line-height:1.35;letter-spacing:.01em;margin:12px 0 28px}.game-story .copy{font-size:17px;max-width:1050px}.game-story .copy p:last-child{margin-bottom:0}@media(max-width:560px){.game-story .copy{font-size:15px}}</style></head>
 <body>
 <div class="noise"></div><div class="cursor"></div><div class="cursor-dot"></div>
 <header><div class="wrap"><nav>
@@ -244,7 +244,7 @@ body{cursor:auto}
 </section><section class="section overview-sec" id="overview"><div class="wrap">
 <div class="section-no reveal">01 / GAME DESIGN OVERVIEW</div>
 <h2 class="section-title reveal" data-edit="">VOID WARRIOR <em>OVERVIEW</em></h2>
-<p class="overview-lead reveal" data-edit="">Mở đầu bằng cấu trúc tổng quan như một game design board: Game Idea → Game Concept → Player, sau đó là Game Design và Narrative. Toàn bộ hành trình đều dẫn về mục tiêu thu hồi các Element Core trước khi đối đầu Void.</p>
+<p class="overview-lead reveal" data-edit="">VOID WARRIOR kết hợp chiến đấu cận chiến, khám phá thế giới và phát triển sức mạnh nguyên tố. Theo chân Kai qua thảm họa quê hương, hành trình thu hồi Element Core và cuộc đối đầu với Void.</p>
 <div class="flow-label reveal"><span>VOID WARRIOR</span></div>
 <div class="overview-grid overview-grid-3 reveal">
 <article class="overview-card tilt"><div class="overview-index">01</div><h3 data-edit="">GAME IDEA</h3><p data-edit="">Kai là chiến binh trẻ sống sót sau khi quê hương bị sinh vật Void tàn phá. Cậu lên đường thu hồi các Element Core đã bị chiếm giữ và tìm ra thế lực đứng sau thảm họa.</p></article>
@@ -268,7 +268,17 @@ body{cursor:auto}
 </div>
 </article>
 </div>
-<div class="overview-divider reveal"><span>NARRATIVE</span></div>
+<div class="overview-divider reveal"><span>CỐT TRUYỆN GAME</span></div>
+<article class="game-story reveal">
+<div class="sub-no">01 / STORY</div>
+<h3 data-edit="">Từ người sống sót đến chiến binh chống lại Void</h3>
+<div class="copy">
+<p data-edit="">Kai, một chiến binh trẻ được người thầy truyền dạy võ thuật và kiếm thuật, sống tại ngôi làng miền núi yên bình. Một ngày, bầu trời xuất hiện vết nứt và sinh vật Void tràn xuống. Ngôi làng bị tàn phá; dù cố chiến đấu, Kai vẫn không thể bảo vệ quê hương. Giữa tro tàn, cậu nhặt lại thanh kiếm của người thầy và quyết tâm tìm ra nguồn gốc của thảm họa.</p>
+<p data-edit="">Trên hành trình, Kai phát hiện mình có thể hấp thụ và đồng bộ với Element Core. Cậu đi qua các vùng đất bị Void chiếm giữ, chiến đấu với quái vật và những kẻ canh giữ đã bị tha hóa để thu hồi sức mạnh của mười hệ: Mộc, Hỏa, Thủy, Lôi, Băng, Phong, Kim, Thổ, Quang và Ảnh. Mỗi Core mở ra kỹ năng mới, đồng thời đưa Kai đến gần hơn với bí mật của Void.</p>
+<p data-edit="">Kai cũng có thể sử dụng Void Energy, nhưng sức mạnh này mang nguy cơ khiến chính cậu bị tha hóa. Động lực trả thù dần trở thành mong muốn khôi phục cân bằng và bảo vệ những vùng đất còn lại. Khi thu hồi đủ sức mạnh nguyên tố, Kai tiến vào The Abyss để đối đầu nguồn gốc Void và ngăn thảm họa tiếp tục lan rộng.</p>
+</div>
+</article>
+<div class="overview-divider reveal"><span>DIỄN BIẾN CHÍNH</span></div>
 <div class="narrative-board reveal">
 <div class="narrative-step"><b>01</b><span data-edit="">Ngôi làng bị Void tấn công</span></div>
 <div class="narrative-arrow">→</div>
@@ -380,8 +390,8 @@ const elementTrack=$('#elementTrack'); if(elementTrack) elementTrack.addEventLis
 // Editable mode + local save
 const editBtn=$('#editBtn'); let editing=false, selectedImg=null;
 function setEditing(on){editing=on;document.body.classList.toggle('editing',on);editBtn.classList.toggle('active',on);editBtn.textContent=on?'Lưu trên thiết bị':'Chỉnh sửa';$$('[data-edit]').forEach((el,i)=>{el.contentEditable=on;el.dataset.editId='t'+i});if(!on)saveContent()}
-function saveContent(){let data={};$$('[data-edit]').forEach((el,i)=>data['t'+i]=el.innerHTML);$$('.editable-img').forEach((el,i)=>data['img'+i]=el.getAttribute('src'));try{localStorage.setItem('void-warrior-storyboard-oct04-final-v5',JSON.stringify(data));return true}catch(err){alert('Không đủ dung lượng để lưu ảnh trên trình duyệt. Hãy dùng ảnh nhỏ hơn hoặc xuất bản sao.');return false}}
-function loadContent(){try{let data=JSON.parse(localStorage.getItem('void-warrior-storyboard-oct04-final-v5')||'{}');$$('[data-edit]').forEach((el,i)=>{if(data['t'+i]!=null)el.innerHTML=data['t'+i]});$$('.editable-img').forEach((el,i)=>{if(data['img'+i])el.src=data['img'+i]})}catch(e){}}
+function saveContent(){let data={};$$('[data-edit]').forEach((el,i)=>data['t'+i]=el.innerHTML);$$('.editable-img').forEach((el,i)=>data['img'+i]=el.getAttribute('src'));try{localStorage.setItem('void-warrior-story-oct04-v6',JSON.stringify(data));return true}catch(err){alert('Không đủ dung lượng để lưu ảnh trên trình duyệt. Hãy dùng ảnh nhỏ hơn hoặc xuất bản sao.');return false}}
+function loadContent(){try{let data=JSON.parse(localStorage.getItem('void-warrior-story-oct04-v6')||'{}');$$('[data-edit]').forEach((el,i)=>{if(data['t'+i]!=null)el.innerHTML=data['t'+i]});$$('.editable-img').forEach((el,i)=>{if(data['img'+i])el.src=data['img'+i]})}catch(e){}}
 editBtn.addEventListener('click',()=>setEditing(!editing));
 $$('.editable-img').forEach(img=>img.addEventListener('click',e=>{if(!editing)return;e.preventDefault();e.stopPropagation();selectedImg=img;$('#imagePicker').click()}));
 $('#imagePicker').addEventListener('change',e=>{let f=e.target.files[0];if(!f||!selectedImg)return;if(f.size>450000){alert('Ảnh quá lớn để lưu trên trình duyệt. Hãy chọn ảnh dưới 450 KB.');return}let r=new FileReader();r.onload=()=>{selectedImg.src=r.result;saveContent()};r.readAsDataURL(f);e.target.value=''});
@@ -406,9 +416,9 @@ const motionAllowed=!matchMedia('(prefers-reduced-motion: reduce)').matches;
 const menuBtn=document.getElementById('menuBtn'),siteLinks=document.getElementById('siteLinks');
 menuBtn.addEventListener('click',()=>{const open=siteLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Đóng menu':'Mở menu')});
 siteLinks.addEventListener('click',e=>{if(e.target.closest('a')){siteLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}});
-document.getElementById('exportBtn').addEventListener('click',()=>{const data=localStorage.getItem('void-warrior-storyboard-oct04-final-v5')||'{}';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='void-warrior-content.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+document.getElementById('exportBtn').addEventListener('click',()=>{const data=localStorage.getItem('void-warrior-story-oct04-v6')||'{}';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='void-warrior-content.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importPicker').click());
-document.getElementById('importPicker').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data!=='object'||Array.isArray(data))throw Error();localStorage.setItem('void-warrior-storyboard-oct04-final-v5',JSON.stringify(data));location.reload()}catch(err){alert('Không thể nhập tệp nội dung hoặc trình duyệt không đủ dung lượng.')}});
+document.getElementById('importPicker').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data!=='object'||Array.isArray(data))throw Error();localStorage.setItem('void-warrior-story-oct04-v6',JSON.stringify(data));location.reload()}catch(err){alert('Không thể nhập tệp nội dung hoặc trình duyệt không đủ dung lượng.')}});
 </script>
 </body>
 </html>
