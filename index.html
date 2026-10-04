@@ -207,7 +207,7 @@ body{cursor:auto}
 .story{margin:0;padding-bottom:48px;overflow:visible;transform:none!important}
 .story img{filter:none;transform:none!important}
 .story .tag{top:auto;bottom:0;left:0;right:0;font-size:11px;padding:14px;letter-spacing:.04em}
-.kai-art{background:#f5f4f0;border-radius:12px;min-height:700px;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden}
+.kai-art{background:#07070b;border-radius:12px;min-height:700px;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden}
 .kai-art .ring{display:none}
 .kai-art img.kai-profile{position:static;width:100%;height:650px;max-height:none;object-fit:contain;filter:none}
 @media(max-width:900px){.kai-art{min-height:560px}.kai-art img.kai-profile{height:520px}}
@@ -314,7 +314,7 @@ body{cursor:auto}
 <span><b>AGE</b> 19</span><span><b>ORIGIN</b> Mountain Village</span><span><b>ROLE</b> Element Bearer</span><span><b>GOAL</b> Restore Balance</span>
 </div>
 <div class="kai-layout">
-<div class="kai-art reveal"><div class="ring parallax" data-speed=".04"></div><img alt="Kai — bản thiết kế nhân vật nét đen" class="editable-img kai-profile" src="assets/kai-profile.webp" width="921" height="2048"/></div>
+<div class="kai-art reveal"><div class="ring parallax" data-speed=".04"></div><img alt="Kai — bản thiết kế nhân vật nét sáng" class="editable-img kai-profile" src="assets/kai-profile-bright.webp" width="921" height="2048"/></div>
 <div>
 <div class="copy reveal"><p data-edit="">Kai, 19 tuổi, sinh ra tại một ngôi làng miền núi có truyền thống võ thuật lâu đời. Từ nhỏ cậu được người thầy huấn luyện kiếm thuật và võ thuật, nhưng chưa từng nghĩ mình sẽ trở thành một chiến binh thực sự.</p><p data-edit="">Đêm Void xâm chiếm, Kai không đủ mạnh để bảo vệ quê hương. Khi tỉnh lại giữa tro tàn, cậu mang theo thanh kiếm của người thầy và phát hiện cơ thể mình có khả năng hấp thụ — đồng bộ với những nguồn năng lượng mà người bình thường không thể kiểm soát.</p></div>
 <div class="timeline reveal">
@@ -370,8 +370,8 @@ const elementTrack=$('#elementTrack'); if(elementTrack) elementTrack.addEventLis
 // Editable mode + local save
 const editBtn=$('#editBtn'); let editing=false, selectedImg=null;
 function setEditing(on){editing=on;document.body.classList.toggle('editing',on);editBtn.classList.toggle('active',on);editBtn.textContent=on?'Lưu trên thiết bị':'Chỉnh sửa';$$('[data-edit]').forEach((el,i)=>{el.contentEditable=on;el.dataset.editId='t'+i});if(!on)saveContent()}
-function saveContent(){let data={};$$('[data-edit]').forEach((el,i)=>data['t'+i]=el.innerHTML);$$('.editable-img').forEach((el,i)=>data['img'+i]=el.getAttribute('src'));try{localStorage.setItem('void-warrior-storyboard-oct04-v3',JSON.stringify(data));return true}catch(err){alert('Không đủ dung lượng để lưu ảnh trên trình duyệt. Hãy dùng ảnh nhỏ hơn hoặc xuất bản sao.');return false}}
-function loadContent(){try{let data=JSON.parse(localStorage.getItem('void-warrior-storyboard-oct04-v3')||'{}');$$('[data-edit]').forEach((el,i)=>{if(data['t'+i]!=null)el.innerHTML=data['t'+i]});$$('.editable-img').forEach((el,i)=>{if(data['img'+i])el.src=data['img'+i]})}catch(e){}}
+function saveContent(){let data={};$$('[data-edit]').forEach((el,i)=>data['t'+i]=el.innerHTML);$$('.editable-img').forEach((el,i)=>data['img'+i]=el.getAttribute('src'));try{localStorage.setItem('void-warrior-storyboard-oct04-v4',JSON.stringify(data));return true}catch(err){alert('Không đủ dung lượng để lưu ảnh trên trình duyệt. Hãy dùng ảnh nhỏ hơn hoặc xuất bản sao.');return false}}
+function loadContent(){try{let data=JSON.parse(localStorage.getItem('void-warrior-storyboard-oct04-v4')||'{}');$$('[data-edit]').forEach((el,i)=>{if(data['t'+i]!=null)el.innerHTML=data['t'+i]});$$('.editable-img').forEach((el,i)=>{if(data['img'+i])el.src=data['img'+i]})}catch(e){}}
 editBtn.addEventListener('click',()=>setEditing(!editing));
 $$('.editable-img').forEach(img=>img.addEventListener('click',e=>{if(!editing)return;e.preventDefault();e.stopPropagation();selectedImg=img;$('#imagePicker').click()}));
 $('#imagePicker').addEventListener('change',e=>{let f=e.target.files[0];if(!f||!selectedImg)return;if(f.size>450000){alert('Ảnh quá lớn để lưu trên trình duyệt. Hãy chọn ảnh dưới 450 KB.');return}let r=new FileReader();r.onload=()=>{selectedImg.src=r.result;saveContent()};r.readAsDataURL(f);e.target.value=''});
@@ -396,9 +396,9 @@ const motionAllowed=!matchMedia('(prefers-reduced-motion: reduce)').matches;
 const menuBtn=document.getElementById('menuBtn'),siteLinks=document.getElementById('siteLinks');
 menuBtn.addEventListener('click',()=>{const open=siteLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Đóng menu':'Mở menu')});
 siteLinks.addEventListener('click',e=>{if(e.target.closest('a')){siteLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}});
-document.getElementById('exportBtn').addEventListener('click',()=>{const data=localStorage.getItem('void-warrior-storyboard-oct04-v3')||'{}';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='void-warrior-content.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+document.getElementById('exportBtn').addEventListener('click',()=>{const data=localStorage.getItem('void-warrior-storyboard-oct04-v4')||'{}';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='void-warrior-content.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importPicker').click());
-document.getElementById('importPicker').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data!=='object'||Array.isArray(data))throw Error();localStorage.setItem('void-warrior-storyboard-oct04-v3',JSON.stringify(data));location.reload()}catch(err){alert('Không thể nhập tệp nội dung hoặc trình duyệt không đủ dung lượng.')}});
+document.getElementById('importPicker').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data!=='object'||Array.isArray(data))throw Error();localStorage.setItem('void-warrior-storyboard-oct04-v4',JSON.stringify(data));location.reload()}catch(err){alert('Không thể nhập tệp nội dung hoặc trình duyệt không đủ dung lượng.')}});
 </script>
 </body>
 </html>
