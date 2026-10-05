@@ -221,12 +221,20 @@ body{cursor:auto}
 #storyboard .section-title{font-size:clamp(36px,5.8vw,84px);line-height:1.28;letter-spacing:.005em;word-spacing:.06em;padding-top:.15em;margin-bottom:48px}
 #storyboard .section-title em{display:block;margin-top:.12em}
 @media(max-width:560px){#storyboard .section-title{font-size:clamp(30px,8vw,44px);line-height:1.35;letter-spacing:0;word-spacing:.03em}}
-</style><style>.game-story{padding:clamp(24px,4vw,52px);border:1px solid var(--line);background:linear-gradient(135deg,#10121e,#090910)}.game-story h3{font-size:clamp(26px,3vw,42px);line-height:1.35;letter-spacing:.01em;margin:12px 0 28px}.game-story .copy{font-size:17px;max-width:1050px}.game-story .copy p:last-child{margin-bottom:0}@media(max-width:560px){.game-story .copy{font-size:15px}}</style><style id="footer-logo-center">.footer-logo{display:block;margin-left:auto;margin-right:auto}</style></head>
+</style><style>.game-story{padding:clamp(24px,4vw,52px);border:1px solid var(--line);background:linear-gradient(135deg,#10121e,#090910)}.game-story h3{font-size:clamp(26px,3vw,42px);line-height:1.35;letter-spacing:.01em;margin:12px 0 28px}.game-story .copy{font-size:17px;max-width:1050px}.game-story .copy p:last-child{margin-bottom:0}@media(max-width:560px){.game-story .copy{font-size:15px}}</style><style id="footer-logo-center">.footer-logo{display:block;margin-left:auto;margin-right:auto}</style><style id="game-flow-layout">
+#game-flow{background:#080a12}#game-flow>.wrap>.section-title{line-height:1.2;letter-spacing:.01em}
+.flow-image{margin:24px 0 0;background:#fff;border:1px solid var(--line)}.flow-image img{display:block;width:100%;height:auto}
+.gameplay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.gameplay-card{padding:30px;border:1px solid var(--line);background:#10121c}
+.gameplay-card h4{font-size:24px;line-height:1.4;margin:0 0 20px;color:#fff}
+.gameplay-card p{font-size:16px;line-height:1.8;color:#c7c3ce;margin:0 0 12px}.gameplay-card p:last-child{margin-bottom:0}.gameplay-card strong{color:#f3f1ed}
+@media(max-width:900px){.gameplay-grid{grid-template-columns:1fr}.gameplay-card{padding:24px}}
+</style></head>
 <body>
 <div class="noise"></div><div class="cursor"></div><div class="cursor-dot"></div>
 <header><div class="wrap"><nav>
 <a class="brand magnetic" href="#top">VOID <b>WARRIOR</b></a>
-<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteLinks" aria-label="Mở menu">☰</button><div class="navlinks" id="siteLinks"><a href="#overview">Overview</a><a href="#world">Worldbuilding</a><a href="#kai">Kai</a><a href="#storyboard">Storyboard</a></div>
+<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteLinks" aria-label="Mở menu">☰</button><div class="navlinks" id="siteLinks"><a href="#overview">Overview</a><a href="#world">Worldbuilding</a><a href="#kai">Kai</a><a href="#storyboard">Storyboard</a><a href="#game-flow">Game Flow</a></div>
 <button class="edit-btn magnetic" id="editBtn" type="button">Chỉnh sửa</button>
 </nav></div></header>
 <main id="top">
@@ -366,6 +374,19 @@ body{cursor:auto}
 
 
 
+<section class="section" id="game-flow"><div class="wrap">
+<div class="section-no reveal">05 / GAME FLOW</div>
+<h2 class="section-title reveal">GAME <em>FLOW</em></h2>
+<div class="sub-no reveal">05A / USER FLOW</div>
+<figure class="flow-image reveal"><a href="assets/user-flow-oct05.webp" target="_blank" rel="noopener" aria-label="Mở sơ đồ User Flow kích thước lớn"><img src="assets/user-flow-oct05.webp" alt="User Flow VOID WARRIOR: màn hình chờ, chơi đơn, chơi solo, chọn màn và độ khó, chiến đấu và mở khóa vòng tiếp theo" loading="lazy" width="1198" height="927"/></a></figure>
+<div class="world-subsection"><div class="sub-no reveal">05B / GAMEPLAY</div><h3 class="sub-title reveal">GAME PLAY</h3>
+<div class="gameplay-grid">
+<article class="gameplay-card reveal"><h4>1. Chế độ chơi</h4><p><strong>Có 2 chế độ: Chơi đơn và Chơi solo.</strong></p><p><strong>Chơi đơn:</strong> Người chơi điều khiển Kai vượt qua các màn, đánh quái và boss theo cốt truyện.</p><p><strong>Chơi solo:</strong> Người chơi tham gia nhánh chiến đấu riêng, tập trung vào đối đầu và thử thách kỹ năng.</p></article>
+<article class="gameplay-card reveal"><h4>2. Độ khó</h4><p><strong>Có 3 cấp độ: Dễ, Trung bình, Khó.</strong></p><p>Mỗi cấp độ có độ khó khác nhau về số lượng quái, sát thương, tốc độ và cách di chuyển của kẻ địch.</p></article>
+<article class="gameplay-card reveal"><h4>3. Cơ chế</h4><p><strong>Di chuyển &amp; nhảy:</strong> Người chơi điều khiển Kai chạy, nhảy, dash và vượt địa hình theo dạng side-scrolling 2D.</p><p><strong>Chiến đấu:</strong> Kai dùng kiếm để tấn công, tạo combo, né đòn và phản công quái vật Void trên đường đi.</p></article>
+<article class="gameplay-card reveal"><h4>4. Kĩ năng</h4><p><strong>Thanh Void:</strong> Được nạp khi chiến đấu và thu thập năng lượng. Khi đầy, người chơi có thể kích hoạt Void Mode.</p><p><strong>Void Mode:</strong> Tăng sức mạnh, tốc độ và mở đòn kết liễu mạnh hơn khi đối đầu với quái mạnh hoặc boss.</p></article>
+<article class="gameplay-card reveal"><h4>5. Tiến trình</h4><p>Chọn màn, chọn độ khó và hoàn thành mỗi màn để mở khóa màn tiếp theo: sau mỗi boss người chơi nhận EXP, Gold và kĩ năng mới.</p></article>
+</div></div></div></section>
 </main>
 <footer class="footer"><div class="wrap">
 <img alt="VOID WARRIOR logo" class="footer-logo editable-img" src="assets/logo-void-warrior.png"/>
